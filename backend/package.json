@@ -1,15 +1,16 @@
 {
-  "name": "backend",
+  "license": "MIT",
+  "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "CloudHaven Backend",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "jest"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.11",
     "jest": "^26.6.3"
   }
 }

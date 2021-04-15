@@ -1,4 +1,4 @@
 module.exports = {
-    mongoURI: "mongodb+srv://cloudHavenDev:vklxZ5iyNtJmwY9m@cloudhaven.ngvn7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    mongoURI: "mongodb+srv://cloudHavenDev:TfDSY96QGzSnyUdm@cloudhaven.ngvn7.mongodb.net/CloudHaven?retryWrites=true&w=majority",
     secretOrKey: "secret"
 }

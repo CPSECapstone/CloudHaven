@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
 const app = express();
 const router = express.Router();
 const port = process.env.PORT || 4000;
@@ -18,9 +19,9 @@ const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
 mongoose
-    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB successfully connected'))
-    .catch(err => console.log(err));
+   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+   .then(() => console.log('MongoDB successfully connected'))
+   .catch(err => console.log(err));
 
 app.use("/", router);
 
