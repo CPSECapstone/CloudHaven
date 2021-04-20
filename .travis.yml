@@ -1,5 +1,6 @@
 language: node_js
 node_js:
 - 12
-install:
-  - npm install
+script:
+- chmod +x build_tests.sh
+- bash ./build_tests.sh
