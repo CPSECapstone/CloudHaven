@@ -1,20 +1,17 @@
-import './App.css';
-import { Home, SideBar, TopBar } from './Components/components';
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import LandingPage from './Pages/LandingPage/LandingPage'
+import { Home } from './Components/components'
 
-function App() {
+function App () {
   return (
-    <div id="App">
-      <div id="MainApp">
-        <SideBar />
-        <div id="PageFrame">
-          <TopBar />
-          <div id="MainContent">
-            <Home/>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    <Router>
+      <Switch>
+        <Route exact path='/' component={LandingPage} />
+        <Route exact path='/home' component={Home} />
+      </Switch>
+    </Router>
+  )
 }
 
-export default App;
+export default App
