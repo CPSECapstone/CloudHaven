@@ -1,24 +1,27 @@
 import calendar from "../../Images/calendar.png";
 import chatBubble from "../../Images/chat.png";
-import profile from "../../Images/profile-user.png";
 import React from "react";
 import { Tabs, Tab } from 'react-bootstrap';
 import "./TabSystem.css";
 
-const TabSystem = () => {
+export default (props) => {
     return (
-        <Tabs defaultActiveKey="UserProfile" id="uncontrolled-tab-example" className="Tabs">
-            <Tab eventKey="UserProfile" title={<span> <img className="TabIcon" src={profile} height="30"/> User Profile </span>}>
-                User profile goes here.
+        <Tabs defaultActiveKey="DynamicTab" id="uncontrolled-tab-example" className="Tabs">
+            <Tab eventKey="DynamicTab" title={
+					<span> <img className="TabIcon" src={props.dynamicTabIcon} height="30"/> {props.dynamicTabTitle} </span>
+				}>
+               Add components to the first tab dynamically using props
             </Tab>
-            <Tab eventKey="Messages" title={<span> <img className="TabIcon" src={chatBubble} height="30"/> Messages </span>}>
-                Messages goes here. 
+            <Tab eventKey="Messages" title={
+					<span> <img className="TabIcon" src={chatBubble} height="30"/> Messages </span>
+				}>
+               Messages goes here. 
             </Tab>
-            <Tab eventKey="Calendar" title={<span> <img className="TabIcon" src={calendar} height="30"/> Calendar </span>}>
-                Calendar goes here.
+            <Tab eventKey="Calendar" title={
+					<span> <img className="TabIcon" src={calendar} height="30"/> Calendar </span>
+				}>
+               Calendar goes here.
             </Tab>
         </Tabs>
     )
 }
-
-export default TabSystem;
