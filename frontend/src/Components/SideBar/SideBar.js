@@ -17,11 +17,11 @@ const renderSidebarMenuOption = (listID, iconPath, urlPath, selected) => {
     var className = "";
 
     if (selected) {
-        classNameIcon = "current AppIcon";
-        className = "current current-name rectangle AppName";
+        classNameIcon = "Current AppIcon";
+        className = "Current CurrentName Rectangle AppName";
     } else {
-        classNameIcon = "icon-color AppIcon";
-        className = "rectangle AppName";
+        classNameIcon = "IconColor AppIcon";
+        className = "Rectangle AppName";
     }
     
     return(
@@ -44,7 +44,7 @@ const SideBar = () => {
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const showSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-    const className = isSidebarOpen ? "sidebar sidebar-open" : "sidebar sidebar-closed";
+    const className = isSidebarOpen ? "SideBar SideBarOpen" : "SideBar SideBarClosed";
 
     return(
         <div className={className}>

@@ -18,6 +18,10 @@
    margin: 6px;
 }
 
+/* The below classes must be kebab case, because they are overriding existing
+ * react-bootstrap classes.
+ */
+
 .dropdown-menu {
    width: 100%;
    box-shadow: 2px 2px 20px var(--gray-accent-color);
