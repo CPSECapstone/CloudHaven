@@ -1,2 +1,28 @@
+:root {
+   /* colors */
+   /* primary blue */
+   --main-bg-color: #37718E;
+   /* dark blue ~not in use but in our color scheme~ */
+   --dark-blue: #254E70;
+   /* red */
+   --notif-color: #C33C54;
+   /* sky blue */
+   --tab-color: #BCEAFF;
+   /* turquoise ~same as darkblue~ */
+   --turquoise: #AEF3E7;
+
+   --gray-accent-color: #C4C4C4;
+   --light-gray-accent-color: #E5E5E5;
+
+   /* font sizes */
+   --small-font-size: 12px;
+   --medium-font-size: 24px;
+   --large-font-size: 36px;
+   --title-font-size: 58px;
+
+   /* height of top bar */
+   --top-bar-height: 60px;
+}
+
 .App {
 }
