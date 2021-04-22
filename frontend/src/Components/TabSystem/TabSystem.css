@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.Tabs {
+    background-color: #BCEAFF;
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav-item {
+    width: calc(100% / 3);
+    background-color: #BCEAFF;
+    color: black;
+    text-align: center;
+    font-size: 24px;
+}
+
+.Tabs > .nav-link.active {
+    background-color: #73A8C0;
+    color: black;
+    border-radius: 20px;
+    border: none;
+}
+
+.Tabs > .nav-link:hover {
+    color: black;
+    border-radius: 20px;
+    border: none;
+}
+
+.TabIcon {
+    position: relative;
+    bottom: .1em;
+}
