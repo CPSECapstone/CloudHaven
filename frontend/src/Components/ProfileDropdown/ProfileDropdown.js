@@ -1,6 +1,6 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
-import profile from "../../Images/profile-user.png";
+import profile from "../../Images/profileUser.png";
 import settings from "../../Images/settings.png";
 import logout from "../../Images/logout.png";
 import './ProfileDropdown.css';

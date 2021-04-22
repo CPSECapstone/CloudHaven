@@ -1,7 +1,7 @@
 import React from 'react';
 import './TopBar.css';
 import ProfileDropdown from '../ProfileDropdown/ProfileDropdown.js'
-import logo from "../../Images/cloudhavensiteicon.png";
+import logo from "../../Images/cloudHavenSiteIcon.png";
 
 function TopBar() {
    return (
