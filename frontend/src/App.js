@@ -7,7 +7,9 @@ function App() {
     <div id="App">
       <div id="MainApp">
         <SideBar />
-        <Home/>
+        <div id="PageFrame">
+          <Home/>
+        </div>
       </div>
     </div>
   );

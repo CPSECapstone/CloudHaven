@@ -33,3 +33,12 @@
    flex-direction: row;
    background-color: var(--gray-accent-color);
 }
+
+#PageFrame {
+   height: 100vh;
+   width: 100vw;
+   border-left: 20px var(--main-bg-color);
+   border-left-style: solid;
+   background-color: var(--main-bg-color);
+   border-top-left-radius: 20px;
+}
