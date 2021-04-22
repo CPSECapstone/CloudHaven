@@ -1,0 +1,58 @@
+#DropdownUsername {
+   font-size: var(--medium-font-size);
+   padding: 0px 70px 0px 0px;
+}
+
+.DropdownItem {
+   color: #6B6B6B;
+   font-size: var(--medium-font-size);
+   min-width: 100%;
+}
+
+.Icon {
+   opacity: 0.55;
+   float: right;
+   height: 30px;
+   width: 30px;
+   object-fit: cover;
+   margin: 6px;
+}
+
+/* The below classes must be kebab case, because they are overriding existing
+ * react-bootstrap classes.
+ */
+
+.dropdown-menu {
+   width: 100%;
+   box-shadow: 2px 2px 20px var(--gray-accent-color);
+   border-radius: 0px 0px 10px 10px;
+   border-top: 2px white solid;
+}
+
+.dropdown-toggle {
+   background-color: white;
+   padding: 0px 18px;
+   border-radius: 10px;
+   margin-bottom: calc(var(--top-bar-height)* 0.58);
+}
+
+.dropdown-toggle::after {
+   background-image: url('../../Images/caretDown.png');
+   background-size: cover;
+   border: none;
+   width: 30px;
+   height: 30px;
+   vertical-align: text-bottom;
+}
+
+.dropdown-divider {
+   width: calc(100% - 24px);
+   margin: auto;
+   border-top: 1px solid var(--gray-accent-color);
+}
+
+.show>.btn-light.dropdown-toggle {
+   background-color: white;
+   border-bottom-left-radius: 0px;
+   border-bottom-right-radius: 0px;
+}

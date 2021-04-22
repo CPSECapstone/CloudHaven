@@ -1,4 +1,4 @@
-import profile from "../../Images/profile-user.png";
+import profile from "../../Images/profileUser.png";
 import React from "react";
 import { TabSystem } from '../components';
 import './Home.css';
