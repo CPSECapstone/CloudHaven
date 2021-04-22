@@ -4,9 +4,11 @@ import { SideBar } from './Components/components';
 
 function App() {
   return (
-    <div className="App">
-      <SideBar />
-      <Home/>
+    <div id="App">
+      <div id="MainApp">
+        <SideBar />
+        <Home/>
+      </div>
     </div>
   );
 }
