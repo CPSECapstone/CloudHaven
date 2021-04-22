@@ -1,4 +1,4 @@
-import { Login, Registration, Homepage, _404 } from './Components/components';
+import { Home, Login, Registration, _404 } from './Components/components';
 import './App.css';
 import React from 'react';
 import {BrowserRouter, Redirect, Switch} from 'react-router-dom';
@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
         <Switch>
           <PublicRoute restricted={true} exact path='/' component = {Landing}/>
-          <PrivateRoute path='/home' component = {Homepage}/>
+          <PrivateRoute path='/home' component = {Home}/>
           <PublicRoute restricted={true} path='/login' component={Login}/>
           <PublicRoute restricted={true} path='/register'
             component={Registration}/>
