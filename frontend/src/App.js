@@ -8,7 +8,9 @@ function App() {
       <div id="MainApp">
         <SideBar />
         <div id="PageFrame">
-          <Home/>
+          <div id="MainContent">
+            <Home/>
+          </div>
         </div>
       </div>
     </div>

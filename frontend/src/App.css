@@ -42,3 +42,12 @@
    background-color: var(--main-bg-color);
    border-top-left-radius: 20px;
 }
+
+#MainContent {
+   width: 100%;
+   height: calc(100vh - 60px);
+   background-color: white;
+   border-top-left-radius: 20px;
+   display: block;
+   overflow: auto;
+}
