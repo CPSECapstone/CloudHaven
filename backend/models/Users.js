@@ -2,18 +2,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  uid: {
-    type: Number,
-    required: true,
-    unique: true
-  },
   first_name: {
     type: String,
-    required: true
+    required: false
   },
   last_name: {
     type: String,
-    required: true
+    required: false
   },
   email: {
     type: String,
@@ -25,16 +20,17 @@ const UserSchema = new Schema({
   },
   birth_date: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    required: false
   },
   phone_number: {
     type: String,
-    required: true
+    required: false
   },
   ssn: {
     type: Number,
-    required: true
+    required: false
   }
 });
 
-module.exports = User = mongoose.model("users", UserSchema);
+module.exports = User = mongoose.model("Users", UserSchema);

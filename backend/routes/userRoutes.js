@@ -17,12 +17,11 @@ const vendorsModel = require('../models/Vendors');
 
 // Route for registering a new user
 router.post('/users/register', async (req, res) => {
-   usersModel.findOne({username: req.body.username}).then((user) => {
+   usersModel.findOne({email: req.body.email}).then((user) => {
       if (user) {
-         res.status(400).send('Username already exists');
+         res.status(400).send('Email already exists');
       } else {
          const newUser = new usersModel({
-            username: req.body.username,
             email: req.body.email,
             password: req.body.password,
          });
@@ -41,36 +40,24 @@ router.post('/users/register', async (req, res) => {
 });
 
 // Route for getting json containing all relevant user data
-router.get('/users/:userId/all', function(req, res) {
-   usersModel.findOne({userId: req.params.userId}, function(err, userData) {
+router.get('/users/:_id/all', function(req, res) {
+   usersModel.findOne({_id: req.params._id}, function(err, userData) {
       if (err || userData === null) {
-         res.send('No user found with userId: ' + req.params.userId);
+         res.send('No user found with _id: ' + req.params._id);
       } else {
          const relevantData = {
-         email: userData.email,
-         username: userData.username,
+            email: userData.email,
          };
          res.send(relevantData);
       }
    });
 });
 
-// Route for getting username
-router.get('/users/:userId/username', function(req, res) {
-   usersModel.findOne({userId: req.params.userId}, function(err, userData) {
-      if (err || userData === null) {
-         res.send('No user found with userId: ' + req.params.userId);
-      } else {
-         res.send(userData.username);
-      }
-   });
-});
-
 // Route for getting user email
-router.get('/users/:userId/email', function(req, res) {
-   usersModel.findOne({userId: req.params.userId}, function(err, userData) {
+router.get('/users/:_id/email', function(req, res) {
+   usersModel.findOne({_id: req.params._id}, function(err, userData) {
       if (err || userData === null) {
-         res.send('No user found with userId: ' + req.params.userId);
+         res.send('No user found with _id: ' + req.params._id);
       } else {
          res.send(userData.email);
       }

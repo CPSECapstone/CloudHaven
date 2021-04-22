@@ -56,7 +56,7 @@ router.delete('/logout', (req, res) => {
 
 // Route to login ~ recieve accessToken, refreshToken, and loggedIn cookie
 router.post('/login', (req, res) => {
-   usersModel.findOne({username: req.body.username})
+   usersModel.findOne({email: req.body.email})
       .then((user) => {
       if (!user) {
          return res.status(404).json({msg: 'could not find user'});

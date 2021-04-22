@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {TextField, Button, Container} from '@material-ui/core';
-import bcrypt from 'bcryptjs';
+import axios from 'axios';
+import {login} from '../Login/Login';
 
 /** Class Component for Registration Page */
 class Registration extends Component {
@@ -13,7 +14,6 @@ class Registration extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -31,9 +31,9 @@ class Registration extends Component {
    * Updates the state with the changed component information
    * @param {event} event - Event which occurred
    */
-  handleChange(event) {
-    this.setState({[event.target.name]: event.target.value});
-  }
+   handleChange(event) {
+      this.setState({[event.target.name]: event.target.value});
+   }
 
   /** Handles registration attempt */
   async handleSubmit() {
@@ -45,11 +45,21 @@ class Registration extends Component {
   }
 
   /** Sends registration information to DB  */
-  async registerUser() {
-    bcrypt.hash(this.state.password, 10, function(err, hash) {
-      // 'hash' variable contains the hash to store and be checked against later
-    });
-  }
+   async registerUser() {
+      axios.post('/users/register',
+         {
+            email: this.state.email,
+            password: this.state.password,
+         })
+         .then((res) => {
+            if (res.status === 200) {
+               login(this.state.email, this.state.password);
+            } else {
+               console.log('registration fail');
+            }
+         })
+         .catch((err) => console.log('error in logging in', err));
+   }
 
   /** Checks to make sure passwords match
   * @return {boolean} - Returns true if passwords match, false otherwise
@@ -81,16 +91,6 @@ class Registration extends Component {
         <Container maxWidth='sm'>
           <h2>CloudHaven Registration</h2>
         </Container>
-        <TextField
-          id="username"
-          variant="outlined"
-          margin="normal"
-          required
-          fullWidth
-          name="username"
-          label="Username"
-          onChange={this.handleChange}
-        />
         <TextField
           id="email"
           variant="outlined"
@@ -149,7 +149,7 @@ class Registration extends Component {
 };
 
 Registration.propTypes = {
-  showLanding: PropTypes.func,
+   showLanding: PropTypes.func,
 };
 
 export default withRouter(Registration);
