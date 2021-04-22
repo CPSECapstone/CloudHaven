@@ -8,23 +8,21 @@ import {
     Button,
 } from "./LandingPage.styled";
 
-class LandingPage extends Component {
-    render() {
-        return (
-            <Background>
-                <Title>Welcome Home</Title>
-                <SubText>It's CLOUDHAVEN!</SubText>
-                <ButtonRow>
-                    <Button filled={false} to="/info">
-                        How it Works
-                    </Button>
-                    <Button filled to="/login">
-                        Get Started
-                    </Button>
-                </ButtonRow>
-            </Background>
-        );
-    }
+function LandingPage() {
+    return (
+        <Background>
+            <Title>Welcome Home</Title>
+            <SubText>It's CLOUDHAVEN!</SubText>
+            <ButtonRow>
+                <Button filled={false} to="/info">
+                    How it Works
+                </Button>
+                <Button filled to="/login">
+                    Get Started
+                </Button>
+            </ButtonRow>
+        </Background>
+    );
 }
 
 export default withRouter(LandingPage);
