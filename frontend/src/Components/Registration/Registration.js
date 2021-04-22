@@ -17,6 +17,10 @@ class Registration extends Component {
       email: '',
       password: '',
       confirmPassword: '',
+      first_name: '',
+      last_name: '',
+      phone_number: '',
+      ssn: '',
       passwordError: null,
       emailError: null,
     };
@@ -39,7 +43,7 @@ class Registration extends Component {
   async handleSubmit() {
     if (this.validateEntries()) {
       this.registerUser();
-      alert(`User registered: \n${this.state.username}
+      alert(`User registered: \n${this.state.email}
       \n${this.state.email}`);
     }
   }
@@ -50,6 +54,10 @@ class Registration extends Component {
          {
             email: this.state.email,
             password: this.state.password,
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            phone_number: this.state.phone_number,
+            ssn: this.state.ssn
          })
          .then((res) => {
             if (res.status === 200) {
@@ -101,6 +109,46 @@ class Registration extends Component {
           label="Email"
           error={this.state.emailError ? true : false}
           helperText={this.state.emailError ? this.state.emailError : null}
+          onChange={this.handleChange}
+        />
+        <TextField
+          id="first_name"
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="first_name"
+          label="First_Name"
+          onChange={this.handleChange}
+        />
+        <TextField
+          id="last_name"
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="last_name"
+          label="Last_Name"
+          onChange={this.handleChange}
+        />
+        <TextField
+          id="phone_number"
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="phone_number"
+          label="Phone_Number"
+          onChange={this.handleChange}
+        />
+        <TextField
+          id="ssn"
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="ssn"
+          label="SSN"
           onChange={this.handleChange}
         />
         <TextField

@@ -24,7 +24,12 @@ router.post('/users/register', async (req, res) => {
          const newUser = new usersModel({
             email: req.body.email,
             password: req.body.password,
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            phone_number: req.body.phone_number,
+            ssn: req.body.ssn,
          });
+      console.log(newUser);
 
       // Hash password before saving in database
       bcrypt.hash(newUser.password, 10, (err, hash) => {
