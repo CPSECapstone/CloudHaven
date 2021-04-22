@@ -59,7 +59,7 @@ router.post('/login', (req, res) => {
    usersModel.findOne({email: req.body.email})
       .then((user) => {
       if (!user) {
-         return res.status(404).json({msg: 'could not find user'});
+         return res.status(404).json({msg: 'Could not find user'});
       }
       bcrypt.compare(req.body.password, user.password).then((match) => {
          if (match) {
@@ -81,7 +81,7 @@ router.post('/login', (req, res) => {
                      expires: new Date(Date.now() + refreshTime * 1000),
                      path: '/token',
                   })
-               .json({message: 'logged in successfully'});
+               .json({message: 'Logged in successfully'});
          } else {
             return res.status(404).json({message: 'Wrong password'});
          }
@@ -99,13 +99,13 @@ router.post('/token', (req, res) => {
       refreshToken = req.cookies.refreshToken;
    }
    if (refreshToken == null) {
-      return res.status(403).json({message: 'No refreshToken provided!'});
+      return res.status(403).json({message: 'No refreshToken provided'});
    }
    if (!refreshTokens.includes(refreshToken)) {
       return res.status(403).json({message: 'Invalid refreshToken'});
    }
    if (refreshToken.exp*1000 <= new Date()) {
-      return res.status(403).json({message: 'refreshToken expired'});
+      return res.status(403).json({message: 'RefreshToken expired'});
    }
    jwt.verify(refreshToken, process.env.REFRESH_PRIV_KEY, (err, user) => {
       if (err) return res.sendStatus(403);
@@ -116,7 +116,7 @@ router.post('/token', (req, res) => {
             httpOnly: true,
             secure: false,
          })
-         .json({message: 'refreshed successfully'});
+         .json({message: 'Refreshed successfully'});
    });
 });
 

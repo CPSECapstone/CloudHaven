@@ -5,10 +5,10 @@ http://cloudhaven.net
 
 at this point, you will need to set up a .env file in backend/. See the 'Env' Section for what variables you need.\
 
-Run `npm install` in /backend and `yarn install` in /frontend to install dependencies
+Run `npm install` in /backend and read Readme in /frontend to install dependencies
 
 ## Running CloudHaven
-`yarn start` in /frontend to run frontend
+see /frontend Readme to run frontend
 
 `npm start` in /backend to run backend
 
