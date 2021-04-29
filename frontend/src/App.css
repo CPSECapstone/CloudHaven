@@ -28,7 +28,7 @@
    font-family: "Roboto";
 }
 
-#MainApp {
+#HomePage {
    display: flex;
    flex-direction: row;
    background-color: var(--gray-accent-color);

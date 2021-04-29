@@ -1,12 +1,21 @@
 import profile from "../../Images/profileUser.png";
 import React from "react";
-import { TabSystem } from '../components';
+import { SideBar, TopBar, TabSystem } from '../components';
+import {withRouter} from 'react-router-dom';
 import './Home.css';
 
 function Home() {
     return (
-        <TabSystem dynamicTabIcon={profile} dynamicTabTitle="User Profile"/>
+    <div id="HomePage">
+        <SideBar />
+        <div id="PageFrame">
+            <TopBar />
+            <div id="MainContent">
+            <TabSystem dynamicTabIcon={profile} dynamicTabTitle="User Profile"/>
+            </div>
+        </div>
+    </div>
     );
 }
 
-export default Home;
+export default withRouter(Home);
