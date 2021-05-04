@@ -4,7 +4,7 @@ import React from 'react';
 import {BrowserRouter, Redirect, Switch} from 'react-router-dom';
 import PrivateRoute from './CustomRoutes/PrivateRoute';
 import PublicRoute from './CustomRoutes/PublicRoute';
-import LandingPage from './Pages/LandingPage/LandingPage'
+import LandingPage from './Components/LandingPage/LandingPage'
 
 function App () {
   return (
