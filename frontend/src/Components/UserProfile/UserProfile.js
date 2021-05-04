@@ -94,7 +94,7 @@ const UserProfile = () => {
     return (
         <Container className='UserProfileWrapper'>
             <div className="Popup">
-                <UserDataPopup display={userDataPopup}/>
+                <UserDataPopup display={userDataPopup} onClose={() => setUserDataPopup(false)}/>
             </div>
             <ProfileHeader/>
                 <header className="AccordionHeader">Personal Information</header>

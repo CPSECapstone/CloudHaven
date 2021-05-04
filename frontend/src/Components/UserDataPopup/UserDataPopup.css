@@ -5,3 +5,11 @@
     position: absolute;
     width: 70em;
 }
+
+.CloseButton {
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 30px;
+    padding: none;
+}

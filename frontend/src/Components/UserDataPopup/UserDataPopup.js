@@ -1,4 +1,5 @@
-import { Container } from "react-bootstrap";
+import { AppDataRow } from "../components";
+import { Container, Row, Button } from "react-bootstrap";
 import React from "react";
 import "./UserDataPopup.css";
 
@@ -9,7 +10,14 @@ export default (props) => {
     }
     return (
         <Container className="DataPopup">
-            hello
+            <Row className="buttonRow">
+                <Button className="CloseButton" onClick={() => props.onClose()}>
+                    X
+                </Button>
+            </Row>
+            <Row>
+                <AppDataRow/>
+            </Row>
         </Container>
     )
 }
