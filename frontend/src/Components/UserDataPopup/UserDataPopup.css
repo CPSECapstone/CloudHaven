@@ -1,0 +1,7 @@
+
+.DataPopup {
+    z-index: 1000;
+    background-color: #73A8C0;
+    position: absolute;
+    width: 70em;
+}

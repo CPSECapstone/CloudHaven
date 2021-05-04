@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
         <Switch>
           <PublicRoute restricted={true} exact path='/' component = {Landing}/>
-          <PrivateRoute path='/home' component = {Home}/>
+          <PublicRoute path='/home' component = {Home}/>
           <PublicRoute restricted={true} path='/login' component={Login}/>
           <PublicRoute restricted={true} path='/register'
             component={Registration}/>

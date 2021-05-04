@@ -7,3 +7,5 @@ export {default as _404} from './404/404';
 export {default as SideBar} from './SideBar/SideBar';
 export {default as Home} from './Home/Home';
 export {default as TopBar} from './TopBar/TopBar';
+export {default as UserDataPopup} from './UserDataPopup/UserDataPopup';
+export {default as AppDataRow} from './UserDataPopup/AppDataRow';

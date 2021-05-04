@@ -11,7 +11,7 @@ export default (props) => {
             <Tab eventKey="DynamicTab" title={
 					<span> <img className="TabIcon" src={props.dynamicTabIcon} height="30"/> {props.dynamicTabTitle} </span>
 				}>
-               <UserProfile/>
+               {props.dynamicTabContent}
             </Tab>
             <Tab eventKey="Messages" title={
 					<span> <img className="TabIcon" src={chatBubble} height="30"/> Messages </span>

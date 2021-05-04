@@ -1,12 +1,13 @@
 import React from "react";
 import { Container, Row, Col, Button, Nav } from 'react-bootstrap';
-import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card'
-import Form from 'react-bootstrap/Form'
-import profile from "../../Images/profileUser.png";
-import settings from "../../Images/settings.png"
-import spacer from "../../Images/userProfileSpacer.png";
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
 import caretDown from "../../Images/caretDown.png";
+import Form from 'react-bootstrap/Form';
+import profile from "../../Images/profileUser.png";
+import settings from "../../Images/settings.png";
+import spacer from "../../Images/userProfileSpacer.png";
+import { UserDataPopup } from "../components";
 import './UserProfile.css'
 
 const UserProfile = () => {
@@ -19,7 +20,8 @@ const UserProfile = () => {
     const [ email, setEmail ] = React.useState('test@test.gov');
     const [ phoneNumber, setPhoneNumber ] = React.useState('555-555-5555');
     const [ birthDate, setBirthDate ] = React.useState('2021-01-01');
-    const [ buttonText, setButtonText ] = React.useState("Edit")
+    const [ buttonText, setButtonText ] = React.useState("Edit");
+    const [ userDataPopup, setUserDataPopup ] = React.useState(false)
 
     const [ firstNameFormData, setFirstNameFormData ] = React.useState({
         controlId: 'formFirstName',
@@ -81,20 +83,19 @@ const UserProfile = () => {
 
     const ManageDataButton = () => {
         return (
-            <Nav
-                className="justify-content-center"
-                activeKey="/home"
-                onSelect={(selectedKey) => alert(`${selectedKey} goes here`)}
-            >
+            <div className='ManageData' onClick={setUserDataPopup(true)}>
                 <img className="SettingsIcon" src={settings} height="30" />
-                <Nav.Link className="ManageDataText" eventKey="ManageDataPopup"> <u>Manage Data</u></Nav.Link>
-            </Nav>
+                <a className="ManageDataText"> <u>Manage Data</u> </a>
+            </div>
         )
     }
 
 
     return (
         <Container className='UserProfileWrapper'>
+            <div className="Popup">
+                <UserDataPopup display={userDataPopup}/>
+            </div>
             <ProfileHeader/>
                 <header className="AccordionHeader">Personal Information</header>
             <Accordion className='InfoAccordion'>
