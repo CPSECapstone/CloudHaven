@@ -11,7 +11,7 @@ const plusIcon = <FontAwesomeIcon icon={faPlus} />
 const menuListItemsConfig = [
     {iconPath: homeIcon, urlPath: "/", listID: "Home"},
     {iconPath: questionMarkIcon, urlPath: "/Test", listID: "TestApplication"},
-    {iconPath: plusIcon, urlPath: "/VendorMarket", listID: "VendorMarket"}
+    {iconPath: plusIcon, urlPath: "/market", listID: "VendorMarket"}
 ];
 
 const renderSidebarMenuOption = (listID, iconPath, urlPath, selected) => {
