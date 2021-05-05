@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import './SideBar.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faBars, faHome, faQuestion} from "@fortawesome/free-solid-svg-icons";
+import {faBars, faHome, faPlus, faQuestion} from "@fortawesome/free-solid-svg-icons";
 
 const homeIcon = <FontAwesomeIcon icon={faHome} />
 const barIcon = <FontAwesomeIcon icon={faBars}/>
 const questionMarkIcon = <FontAwesomeIcon icon={faQuestion}/>
+const plusIcon = <FontAwesomeIcon icon={faPlus} />
 
 const menuListItemsConfig = [
     {iconPath: homeIcon, urlPath: "/", listID: "Home"},
-    {iconPath: questionMarkIcon, urlPath: "/Test", listID: "TestApplication"}
+    {iconPath: questionMarkIcon, urlPath: "/Test", listID: "TestApplication"},
+    {iconPath: plusIcon, urlPath: "/VendorMarket", listID: "VendorMarket"}
 ];
 
 const renderSidebarMenuOption = (listID, iconPath, urlPath, selected) => {
