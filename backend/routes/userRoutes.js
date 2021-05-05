@@ -28,6 +28,8 @@ router.post('/users/register', async (req, res) => {
             last_name: req.body.last_name,
             phone_number: req.body.phone_number,
             ssn: req.body.ssn,
+            subscribed: [],
+            favorites: [],
          });
       console.log(newUser);
 
