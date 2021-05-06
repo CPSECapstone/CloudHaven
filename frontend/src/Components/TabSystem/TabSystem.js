@@ -1,6 +1,7 @@
 import calendar from "../../Images/calendar.png";
 import chatBubble from "../../Images/chat.png";
 import React from "react";
+import { Calendar } from '../Calendar/Calendar';
 import { Tabs, Tab } from 'react-bootstrap';
 import "./TabSystem.css";
 
@@ -20,7 +21,7 @@ export default (props) => {
             <Tab eventKey="Calendar" title={
 					<span> <img className="TabIcon" src={calendar} height="30"/> Calendar </span>
 				}>
-               Calendar goes here.
+                <Calendar></Calendar>
             </Tab>
         </Tabs>
     )
