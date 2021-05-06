@@ -127,3 +127,5 @@ router.post('/calendar/:user', function(req, res) {
       res.send("Unsupported Operation");
    }
 });
+
+module.exports = router;
