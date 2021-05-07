@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {Card, CardHeader, CardContent, Grid, CardActions, IconButton, 
         CardActionArea} from '@material-ui/core'
-import {AddIcon, CheckCircleIcon} from '@material-ui/icons';
+import AddIcon from '@material-ui/icons/Add';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle'
 import axios from 'axios';
 
 const useStyles = makeStyles({
