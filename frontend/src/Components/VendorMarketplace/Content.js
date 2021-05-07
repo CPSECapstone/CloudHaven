@@ -1,14 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import Grid from '@material-ui/core/Grid';
-import CardActions from '@material-ui/core/CardActions';
-import IconButton from '@material-ui/core/IconButton';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import AddIcon from '@material-ui/icons/Add';
+import {Card, CardHeader, CardContent, Grid, CardActions, IconButton, 
+        CardActionArea} from '@material-ui/core'
+import {AddIcon, CheckCircleIcon} from '@material-ui/icons';
 import axios from 'axios';
 
 const useStyles = makeStyles({
@@ -61,11 +55,8 @@ export default function Content(props) {
       try {
         const serviceResponse = await axios.get('/vendors');
         const userResponse = await axios.get('users/vendors');
-        console.log(userResponse);
         setServices(serviceResponse.data);
         setUserServices(userResponse.data.map((vendor) => vendor.vid));
-        console.log(userResponse.data.map((vendor) => vendor.vid))
-        console.log(userServices);
       } catch (error) {
         console.log(error);
       }

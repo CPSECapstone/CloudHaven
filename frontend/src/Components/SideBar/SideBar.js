@@ -41,7 +41,7 @@ const SideBar = () => {
     const currentPath = window.location.pathname;
     const [menuListItemsConfig, setMenuListItemsConfig] = useState(baseMenuConfig);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const showSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+    const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
     const className = isSidebarOpen ? "SideBar SideBarOpen" : "SideBar SideBarClosed";
 
     useEffect(() => {
@@ -75,7 +75,7 @@ const SideBar = () => {
 
     return(
         <div className={className}>
-            <button id="Hamburger" onClick={showSidebar}><i className="fas fa-bars">{barIcon}</i></button>
+            <button id="Hamburger" onClick={toggleSidebar}><i className="fas fa-bars">{barIcon}</i></button>
             <ul>
                 {menuItems}
             </ul>
