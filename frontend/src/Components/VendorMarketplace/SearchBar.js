@@ -1,10 +1,7 @@
 import React from 'react';
 import {fade, makeStyles} from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
-import {IconButton} from '@material-ui/core';
+import {IconButton, AppBar, Toolbar, InputBase} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {

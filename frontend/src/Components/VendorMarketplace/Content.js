@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import {Card, CardHeader, CardContent, Grid, CardActions, IconButton, 
-        CardActionArea} from '@material-ui/core'
+import {Card, CardHeader, Grid, CardActions, IconButton} from '@material-ui/core'
 import AddIcon from '@material-ui/icons/Add';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle'
 import axios from 'axios';
@@ -78,13 +77,9 @@ export default function Content(props) {
         {data.map((elem) => (
           <Grid item xs={3} key={data.indexOf(elem)}>
             <Card>
-              <CardActionArea>
                 <CardHeader
                   title={`${elem.name}`}
                 />
-                <CardContent>
-                </CardContent>
-              </CardActionArea>
               <CardActions disableSpacing>
                 <IconButton
                   aria-label="add to favorites"

@@ -37,12 +37,10 @@ const renderSidebarMenuOption = (listID, iconPath, urlPath, selected) => {
 }
 
 const SideBar = () => {
-    const menuItems = [];
     const currentPath = window.location.pathname;
     const [menuListItemsConfig, setMenuListItemsConfig] = useState(baseMenuConfig);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-    const className = isSidebarOpen ? "SideBar SideBarOpen" : "SideBar SideBarClosed";
 
     useEffect(() => {
         const fetchUserVendors = async () => {
@@ -67,17 +65,12 @@ const SideBar = () => {
         fetchUserVendors();
 
     }, []);
-    
-
-    for (const itemConfig of menuListItemsConfig){
-        menuItems.push(renderSidebarMenuOption(itemConfig.listID, itemConfig.iconPath, itemConfig.urlPath, currentPath===itemConfig.urlPath));
-    }
 
     return(
-        <div className={className}>
+        <div className={isSidebarOpen ? "SideBar SideBarOpen" : "SideBar SideBarClosed"}>
             <button id="Hamburger" onClick={toggleSidebar}><i className="fas fa-bars">{barIcon}</i></button>
             <ul>
-                {menuItems}
+                {menuListItemsConfig.map((itemConfig) => renderSidebarMenuOption(itemConfig.listID, itemConfig.iconPath, itemConfig.urlPath, currentPath===itemConfig.urlPath))}
             </ul>
 
         </div>
