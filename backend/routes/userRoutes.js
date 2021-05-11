@@ -28,6 +28,8 @@ router.post('/users/register', async (req, res) => {
             last_name: req.body.last_name,
             phone_number: req.body.phone_number,
             ssn: req.body.ssn,
+            subscribed: [],
+            favorites: [],
          });
       console.log(newUser);
 
@@ -73,7 +75,7 @@ router.get('/users/:_id/email', function(req, res) {
 router.get('/users/vendors',
    passport.authenticate('jwt', {session: false}),
    function(req, res) {
-      vendorsModel.find({vendorId: {$in: req.user.vendorIds}},
+      vendorsModel.find({vid: {$in: req.user.subscribed}},
          function(err, vendors) {
             if (err) {
                res.send(err);
@@ -81,7 +83,7 @@ router.get('/users/vendors',
                const vendorsWithFavorites = vendors.map((vendorDoc) => {
                   const vendorObj = vendorDoc.toObject();
                   vendorObj.isFavorite =
-                     req.user.favoriteIds.includes(vendorDoc.vendorId);
+                     req.user.favorites.includes(vendorDoc.vid);
                   return vendorObj;
                });
                res.send(vendorsWithFavorites);
@@ -96,10 +98,10 @@ router.post('/users/vendors',
    passport.authenticate('jwt', {session: false}),
    function(req, res) {
    usersModel.findOneAndUpdate({_id: req.user._id},
-      {$push: {vendorIds: req.body.vendorId}}, function(err, userData) {
+      {$push: {subscribed: String(req.body.vendorId)}}, function(err, userData) {
          if (err || userData === null) {
-            res.send('A datase error occured while adding vendor: ' +
-            req.body.vendorId);
+            res.send('A database error occured while adding vendor: ' +
+            req.body.vid);
          } else {
             res.send(userData);
          }
@@ -112,10 +114,10 @@ router.delete('/users/vendors',
    passport.authenticate('jwt', {session: false}),
    function(req, res) {
    usersModel.findOneAndUpdate({_id: req.user._id},
-      {$pull: {vendorIds: req.body.vendorId}}, function(err, userData) {
+      {$pull: {subscribed: String(req.body.vendorId)}}, function(err, userData) {
       if (err || userData === null) {
-         res.send('A datase error occured while deleting vendor: ' +
-         req.body.vendorId);
+         res.send('A database error occured while deleting vendor: ' +
+         req.body.vid);
       } else {
          res.send(userData);
       }

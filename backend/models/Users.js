@@ -29,6 +29,14 @@ const UserSchema = new Schema({
   ssn: {
     type: Number,
     required: true
+  },
+  subscribed: {
+    type: Array,
+    require: true
+  },
+  favorites: {
+    type: Array,
+    require: true
   }
 });
 
