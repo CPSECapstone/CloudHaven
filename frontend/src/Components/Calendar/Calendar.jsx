@@ -52,23 +52,23 @@ export function Calendar() {
         <Button onClick={() => setDate(new Date(year, month + 1, day))}>Next</Button>
       </Header>
       <Body>
-        {DAYS_OF_THE_WEEK.map(d => (
-          <Day key={d}>
-            <strong>{d}</strong>
+        {DAYS_OF_THE_WEEK.map((dayName, index) => (
+          <Day key={dayName}>
+            <strong>{dayName}</strong>
           </Day>
         ))}
         {Array(days[month] + (startDay - 1))
           .fill(null)
           .map((_, index) => {
-            const d = index - (startDay - 2);
+            const dayName = index - (startDay - 2);
             return (
               <Day
                 key={index}
-                isToday={d === today.getDate()}
-                isSelected={d === day}
-                onClick={() => setDate(new Date(year, month, d))}
+                isToday={dayName === today.getDate()}
+                isSelected={dayName === day}
+                onClick={() => setDate(new Date(year, month, dayName))}
               >
-                {d > 0 ? d : ''}
+                {dayName > 0 ? dayName : ''}
               </Day>
             );
           })}
