@@ -21,7 +21,7 @@ export default (props) => {
             <Tab eventKey="Calendar" title={
 					<span> <img className="TabIcon" src={calendar} height="30"/> Calendar </span>
 				}>
-                <Calendar></Calendar>
+                <Calendar/>
             </Tab>
         </Tabs>
     )

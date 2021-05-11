@@ -34,5 +34,5 @@ export const Day = styled.div`
   justify-content: center;
   cursor: pointer;
   border: ${props => props.isToday ? '1px solid white' : 'white'};
-  background-color: ${props => props.isSelected ? 'black' : ''}
+  background-color: ${props => props.isSelected ? 'grey' : ''}
 `;
