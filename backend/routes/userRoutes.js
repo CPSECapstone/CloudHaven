@@ -71,7 +71,21 @@ router.get('/users/:_id/email', function(req, res) {
    });
 });
 
-// Route for getting user subscribed vendors
+// Route for removing a user; returns the document as it was before deletion
+router.delete('/users', 
+   function(req, res) {
+      usersModel.findOneAndDelete({_id: req.user._id}, function(err, userData) {
+            if (err || userData == null){
+               res.send('A database error occured while deleting user:' + req.user._id)
+            }
+            else{
+               res.send(userData)
+            }
+         });
+   },
+);
+
+// Route for getting users subscribed to vendors
 router.get('/users/vendors',
    passport.authenticate('jwt', {session: false}),
    function(req, res) {
@@ -124,5 +138,8 @@ router.delete('/users/vendors',
       });
    },
 );
+
+
+
 
 module.exports = router;
