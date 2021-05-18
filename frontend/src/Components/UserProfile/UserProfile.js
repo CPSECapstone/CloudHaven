@@ -21,7 +21,7 @@ const UserProfile = () => {
     const [ phoneNumber, setPhoneNumber ] = React.useState('555-555-5555');
     const [ birthDate, setBirthDate ] = React.useState('2021-01-01');
     const [ buttonText, setButtonText ] = React.useState("Edit");
-    const [ userDataPopup, setUserDataPopup ] = React.useState(false)
+    const [ userDataPopup, setUserDataPopup ] = React.useState(false);
 
     const [ firstNameFormData, setFirstNameFormData ] = React.useState({
         controlId: 'formFirstName',
@@ -83,10 +83,11 @@ const UserProfile = () => {
 
     const ManageDataButton = () => {
         return (
-            <div className='ManageData' onClick={setUserDataPopup(true)}>
+            <Button className='ManageData' onClick={setUserDataPopup(true)}>
+                {console.log(userDataPopup)}
                 <img className="SettingsIcon" src={settings} height="30" />
                 <a className="ManageDataText"> <u>Manage Data</u> </a>
-            </div>
+            </Button>
         )
     }
 
@@ -94,6 +95,7 @@ const UserProfile = () => {
     return (
         <Container className='UserProfileWrapper'>
             <div className="Popup">
+                {console.log(userDataPopup)}
                 <UserDataPopup display={userDataPopup} onClose={() => setUserDataPopup(false)}/>
             </div>
             <ProfileHeader/>
