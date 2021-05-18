@@ -7,3 +7,6 @@ export {default as _404} from './404/404';
 export {default as SideBar} from './SideBar/SideBar';
 export {default as Home} from './Home/Home';
 export {default as TopBar} from './TopBar/TopBar';
+export {default as CustomForm} from './CustomForm/CustomForm';
+export {default as FileList} from './FileList/FileList';
+export {default as FileViewer} from './FileViewer/FileViewer';
