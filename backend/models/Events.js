@@ -13,7 +13,7 @@ const EventSchema = new Schema({
       type: String,
       default: null
    },
-   text: {
+   desc: {
       type: String,
       default: ""
    },
