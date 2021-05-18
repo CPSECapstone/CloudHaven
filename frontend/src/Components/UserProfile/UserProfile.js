@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { Container, Row, Col, Button, Nav } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
@@ -63,7 +63,7 @@ const UserProfile = () => {
         }
     };
 
-    const profileHeader = () => {
+    const ProfileHeader = () => {
         return (
             <Container className='d-flex align-items-start justify-content-between'>
                 <img src={spacer} height='130' />
@@ -73,13 +73,13 @@ const UserProfile = () => {
         )
     }
 
-    const editButton = () => {
+    const EditButton = () => {
         return (
             <Button className='EditButton' onClick={toggleEditing}>{buttonText}</Button>
         )
     }
 
-    const manageDataButton = () => {
+    const ManageDataButton = () => {
         return (
             <Nav
                 className='justify-content-center'
