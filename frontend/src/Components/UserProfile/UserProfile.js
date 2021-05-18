@@ -65,7 +65,7 @@ const UserProfile = () => {
 
     const ProfileHeader = () => {
         return (
-            <Container className='d-flex align-items-start justify-content-between'>
+            <Container className='ProfileHeader'>
                 <img src={spacer} height='130' />
                 <img src={profile} height='150' />
                 <Button className='EditButton' onClick={toggleEditing}>{buttonText}</Button>

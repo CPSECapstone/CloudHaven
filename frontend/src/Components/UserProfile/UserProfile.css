@@ -2,6 +2,12 @@
     margin-top: 2%;
 }
 
+.ProfileHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
 .EditButton {
     background-color: #EDEDED;
     color: #000000;
