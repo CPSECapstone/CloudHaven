@@ -5,24 +5,18 @@ import checkmark from "../../Images/black-checkmark.png";
 import './AppDataRow.css';
 
 export default props => {
-    const [vendorId, setVendorId] = useState("");
-    const [vendorName, setVendorName] = useState("");
-
-    const getVendorAppData = () => {
-
-    };
 
     return (
         <Container>
             <Row className="AppDataRow">
                 <Col>
                     <div className="VendorIcon">
-                        <img src={profile} height="84"/>
+                        <img src={props.icon} height="84"/>
                     </div>
                 </Col>
                 <Col>
-                    <div class="VendorName" >
-                        <b>{vendorName}</b>
+                    <div class="VendorName">
+                        <b>{props.name}</b>
                     </div>
                 </Col>
                 <Col className="checkbox" md={{ offset: 1 }}>
@@ -37,18 +31,7 @@ export default props => {
                         <img src={checkmark} class="icon" height="53"/>
                     </span>
                 </Col>
-                <Col className="checkbox">
-                    <input type="checkbox"/>
-                    <span class="overlay">
-                        <img src={checkmark} class="icon" height="53"/>
-                    </span>
-                </Col>
-                <Col className="checkbox">
-                    <input type="checkbox"/>
-                    <span class="overlay">
-                        <img src={checkmark} class="icon" height="53"/>
-                    </span>
-                </Col>
+                
             </Row>
         </Container>
     )

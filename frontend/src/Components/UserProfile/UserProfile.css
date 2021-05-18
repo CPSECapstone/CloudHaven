@@ -41,10 +41,19 @@
     text-align: start;
 }
 
+.ManageDataDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .ManageData {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
+    color: #254E70;
+    border: none;
 }
 
 .SettingsIcon {
@@ -54,7 +63,6 @@
 
 .ManageDataText {
     font-size: 22px;
-    color: #254E70;
     cursor: pointer;
 }
 
@@ -80,6 +88,6 @@
     position: relative;
     left: 50%;
     top: 3em;
-    margin-left: -35em;
+    margin-left: -25em;
 }
 

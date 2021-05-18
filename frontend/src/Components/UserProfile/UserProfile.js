@@ -83,8 +83,7 @@ const UserProfile = () => {
 
     const ManageDataButton = () => {
         return (
-            <Button className='ManageData' onClick={setUserDataPopup(true)}>
-                {console.log(userDataPopup)}
+            <Button className='ManageData' onClick={() => setUserDataPopup(true)}>
                 <img className="SettingsIcon" src={settings} height="30" />
                 <a className="ManageDataText"> <u>Manage Data</u> </a>
             </Button>
@@ -95,7 +94,6 @@ const UserProfile = () => {
     return (
         <Container className='UserProfileWrapper'>
             <div className="Popup">
-                {console.log(userDataPopup)}
                 <UserDataPopup display={userDataPopup} onClose={() => setUserDataPopup(false)}/>
             </div>
             <ProfileHeader/>
@@ -185,7 +183,9 @@ const UserProfile = () => {
                 </Card>
             </Accordion>
 
-            <ManageDataButton/>
+            <div className="ManageDataDiv">
+                <ManageDataButton/>
+            </div>
 
         </Container>
 
