@@ -30,6 +30,7 @@ export default function Content(props) {
         props.searchInput.toLowerCase()));
 
   const addUserService = async (serviceId) => {
+    props.setUpdateSideBar(true)
     if (!userServices.includes(serviceId)) {
       setUserServices([...userServices, serviceId]);
       try {
@@ -38,7 +39,6 @@ export default function Content(props) {
         console.log(error);
       }
     } else {
-      console.log("remove service");
       try {
         await axios.delete('/users/vendors', {data : {vendorId: serviceId}});
       } catch (error) {
