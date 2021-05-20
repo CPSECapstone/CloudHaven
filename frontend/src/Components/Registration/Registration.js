@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {TextField, Button, Container} from '@material-ui/core';
 import axios from 'axios';
-import {login} from '../Login/Login';
+import {makeLoginPost as login} from '../Login/Login';
 
 const Registration = () => {
   const [email, setEmail] = useState('');
