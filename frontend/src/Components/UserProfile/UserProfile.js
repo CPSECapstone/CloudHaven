@@ -12,41 +12,43 @@ import './UserProfile.css'
 const UserProfile = () => {
 
     const [ isEditing, setIsEditing ] = useState(false);
+    const [ buttonText, setButtonText ] = useState('Edit');
 
     // TO DO: pull user info from passport/backend
-    const [ firstName, setFirstName ] = useState('Johnald');
-    const [ lastName, setLastName ] = useState('Testman');
-    const [ email, setEmail ] = useState('test@test.gov');
-    const [ phoneNumber, setPhoneNumber ] = useState('555-555-5555');
-    const [ birthDate, setBirthDate ] = useState('2021-01-01');
-    const [ buttonText, setButtonText ] = useState('Edit')
+    const [ userData, setUserData ] = useState({
+        firstName: 'Johnald',
+        lastName: 'Testman',
+        email: 'test@test.gov',
+        phoneNumber: '555-555-5555',
+        birthDate: '2021-01-01'
+    })
 
     const [ firstNameFormData, setFirstNameFormData ] = useState({
-        controlId: 'formFirstName',
+        controlId: 'firstName',
         label: 'First Name',
         type: 'name',
         focus: null
     })
     const [ lastNameFormData, setlastNameFormData ] = useState({
-        controlId: 'formlastName',
+        controlId: 'lastName',
         label: 'Last Name',
         type: 'name',
         focus: null
     })
     const [ emailFormData, setEmailFormData ] = useState({
-        controlId: 'formEmail',
+        controlId: 'email',
         label: 'Email Address',
         type: 'email',
         focus: null
     })
     const [ phoneFormData, setPhoneFormData ] = useState({
-        controlId: 'formPhone',
+        controlId: 'phoneNumber',
         label: 'Phone Number',
         type: 'tel',
         focus: null
     })
     const [ birthFormData, setBirthFormData ] = useState({
-        controlId: 'formBirth',
+        controlId: 'birthDate',
         label: 'Date of Birth',
         type: 'date',
         focus: null
@@ -62,6 +64,14 @@ const UserProfile = () => {
             setButtonText('Edit')
         }
     };
+
+    const handleUserDataChange = e => {
+        const { name, value } = e.target;
+        setUserData(prevUserData => ({
+            ...prevUserData,
+            [name]: value
+        }));
+    }
 
     const ProfileHeader = () => {
         return (
@@ -104,9 +114,10 @@ const UserProfile = () => {
                                     <Form.Group controlId={firstNameFormData.controlId}>
                                         <Form.Label>{firstNameFormData.label}</Form.Label>
                                         <Form.Control
+                                            name={firstNameFormData.controlId}
                                             type={firstNameFormData.type}
-                                            value={firstName}
-                                            onChange={e => setFirstName(e.target.value)}
+                                            value={userData.firstName}
+                                            onChange={handleUserDataChange}
                                             disabled={!isEditing} />
                                     </Form.Group>
                                 </Col>
@@ -115,9 +126,10 @@ const UserProfile = () => {
                                     <Form.Group controlId={lastNameFormData.controlId}>
                                         <Form.Label>{lastNameFormData.label}</Form.Label>
                                         <Form.Control
+                                            name={lastNameFormData.controlId}
                                             type={lastNameFormData.type}
-                                            value={lastName}
-                                            onChange={e => setLastName(e.target.value)}
+                                            value={userData.lastName}
+                                            onChange={handleUserDataChange}
                                             disabled={!isEditing} />
                                     </Form.Group>
                                 </Col>
@@ -128,9 +140,10 @@ const UserProfile = () => {
                                     <Form.Group controlId={emailFormData.controlId}>
                                         <Form.Label>{emailFormData.label}</Form.Label>
                                         <Form.Control
+                                            name={emailFormData.controlId}
                                             type={emailFormData.type}
-                                            value={email}
-                                            onChange={e => setEmail(e.target.value)}
+                                            value={userData.email}
+                                            onChange={handleUserDataChange}
                                             disabled={!isEditing} />
                                     </Form.Group>
                                 </Col>
@@ -139,9 +152,10 @@ const UserProfile = () => {
                                     <Form.Group controlId={phoneFormData.controlId}>
                                         <Form.Label>{phoneFormData.label}</Form.Label>
                                         <Form.Control
+                                            name={phoneFormData.controlId}
                                             type={phoneFormData.type}
-                                            value={phoneNumber}
-                                            onChange={e => setFirstName(e.target.value)}
+                                            value={userData.phoneNumber}
+                                            onChange={handleUserDataChange}
                                             disabled={!isEditing} />
                                     </Form.Group>
                                 </Col>
@@ -150,9 +164,10 @@ const UserProfile = () => {
                                     <Form.Group controlId={birthFormData.controlId}>
                                         <Form.Label>{birthFormData.label}</Form.Label>
                                         <Form.Control
+                                            name={birthFormData.controlId}
                                             type={birthFormData.type}
-                                            value={lastName}
-                                            onChange={e => setFirstName(e.target.value)}
+                                            value={userData.lastName}
+                                            onChange={handleUserDataChange}
                                             disabled={!isEditing} />
                                     </Form.Group>
                                 </Col>
