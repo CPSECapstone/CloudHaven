@@ -19,8 +19,6 @@ const Registration = () => {
   const handleSubmit = async () => {
     if (validateEntries()) {
       registerUser();
-      alert(`User registered: \n${email}
-      \n${email}`);
     }
   }
 
