@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ChatSchema = new Schema({
-   sendor: {
+   sender: {
       // User's ObjectId repersented as a String
       type: String,
       required: true
