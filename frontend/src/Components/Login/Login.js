@@ -61,7 +61,7 @@ const Login = () => {
           label="Email"
           name="email"
           autoComplete="email"
-          error={loginError ? true : false}
+          error={loginError}
           helperText={loginError ? "Incorrect username or password." : null}
           onChange={(e) => setLoginUsername(e.target.value)}
         />
