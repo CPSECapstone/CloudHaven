@@ -26,8 +26,8 @@ export default (props) => {
             {props.dynamicTabTitle}{" "}
           </span>
         }
-      >
         /* Add components to the first tab dynamically using props */
+      >
         <UserProfile/>
       </Tab>
       <Tab
