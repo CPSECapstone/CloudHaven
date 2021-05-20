@@ -30,7 +30,7 @@ router.get('/calendar/init', function(req, res){
 
    const newEvent4 = new eventModel({
       user: 'TestUser1',
-      text: 'CSC 406 End of Sprint Meeting',
+      desc: 'CSC 406 End of Sprint Meeting',
       start_date: new Date(2021, 5, 6, 12, 10),
       end_date: new Date(2021, 5, 6, 15),
    });
@@ -47,7 +47,7 @@ router.get('/calendar/init', function(req, res){
    const newEvent6 = new eventModel({
       user: 'TestUser1',
       vendor: 'TestVendor1',
-      text: 'CSC 406 End of Sprint Meeting',
+      desc: 'CSC 406 End of Sprint Meeting',
       start_date: new Date(2021, 5, 6, 12, 10),
       end_date: new Date(2021, 5, 6, 15),
       color: 0x330099
@@ -115,7 +115,7 @@ router.post('/calendar/:user', function(req, res) {
       const newEvent = new eventModel({
          user: data.user,
          vendor: data.vendor,
-         text: data.text,
+         desc: data.desc,
          start_date: data.start_date,
          end_date: data.end_date,
          color: data.color
