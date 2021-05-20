@@ -125,6 +125,7 @@ router.post('calendar/edit/:event', function(req, res) {
    });
 });
 
+
 // Delete an Event
 router.delete('calendar/:event', function(req, res) {
    eventModel.findByIdAndDelete(req.params.event, function(err, eventData) {
