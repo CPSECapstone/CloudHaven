@@ -63,7 +63,9 @@ const SideBar = (props) => {
         };
      
         fetchUserVendors();
-        props.setUpdateSideBar(false);
+        if (props.setUpdateSideBar) {
+            props.setUpdateSideBar(false);
+        }
 
     }, [props.updateSideBar]);
 
