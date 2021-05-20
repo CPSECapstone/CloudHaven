@@ -31,6 +31,9 @@ export default function Content(props) {
 
   const addUserService = async (serviceId) => {
     props.setUpdateSideBar(true)
+    console.log(serviceId);
+    console.log(userServices);
+    console.log(userServices.includes(serviceId));
     if (!userServices.includes(serviceId)) {
       setUserServices([...userServices, serviceId]);
       try {
@@ -56,7 +59,7 @@ export default function Content(props) {
         const serviceResponse = await axios.get('/vendors');
         const userResponse = await axios.get('users/vendors');
         setServices(serviceResponse.data);
-        setUserServices(userResponse.data.map((vendor) => vendor.vid));
+        setUserServices(userResponse.data.map((vendor) => vendor._id));
       } catch (error) {
         console.log(error);
       }
@@ -82,9 +85,9 @@ export default function Content(props) {
                 />
               <CardActions disableSpacing>
                 <IconButton
-                  aria-label="add to favorites"
-                  onClick={() => addUserService(elem.vid)}>
-                  {userServices.includes(elem.vid) ?
+                  aria-label="add to subscribed services"
+                  onClick={() => addUserService(elem._id)}>
+                  {userServices.includes(elem._id) ?
                    <CheckCircleIcon /> : <AddIcon />}
                 </IconButton>
               </CardActions>
