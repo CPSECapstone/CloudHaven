@@ -35,6 +35,7 @@ app.use(require('./routes/userRoutes'));
 app.use(require('./routes/vendorRoutes'));
 app.use(require('./routes/authRoutes'));
 app.use(require('./routes/calendarRoutes'));
+app.use(require('./routes/fakeVendor'));
 
 app.listen(port, function () {
    console.log(`Server listening on ${port}!`);
