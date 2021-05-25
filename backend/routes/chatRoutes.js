@@ -88,16 +88,6 @@ router.post("/messages/:user", function (req, res) {
   delete data.id;
   delete data["!nativeeditor_status"];
 
-  function update_response(err, result) {
-    if (err) {
-      mode = "error";
-    } else if (mode == "inserted") {
-      tid = data._id;
-    }
-    res.setHeader("Content-Type", "application/json");
-    res.send({ action: mode, sid: sid, tid: tid });
-  }
-
   if (mode == "updated") {
     eventModel.updateOne(sid, data, update_response);
   } else if (mode == "inserted") {
