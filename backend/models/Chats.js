@@ -24,9 +24,6 @@ const ChatSchema = new Schema({
    timeStamp: {
       type: Date,
       required: true
-   },
-   color: {
-      type: Number
    }
 });
 
