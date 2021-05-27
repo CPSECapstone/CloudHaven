@@ -6,12 +6,19 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import './Login.css';
 
-export const login = (email, password) => {
+const login = async (email, password, stateSetter) => {
+  const res = await makeLoginPost(email, password);
+  if (res === 401 || res === 404) {
+    stateSetter(true);
+  }
+}
+
+export const makeLoginPost = async (email, password) => {
   if (!email || !password) {
     alert('email and password required!');
-    return;
+    return 401;
   }
-  axios.post('/login', {
+  const res = await axios.post('/login', {
     email: email,
     password: password,
   })
@@ -19,12 +26,16 @@ export const login = (email, password) => {
         if (res.status === 200) {
           localStorage.setItem('loggedIn', 'yup');
           window.location.assign('/home');
+          return 200;
         } else {
           console.log('login fail');
+          return 401;
         }
       })
-      .catch((err) => console.log('error logging in', err));
-};
+      .catch((err) => { console.log('login error');
+      return 401; });
+  return res;
+}
 
 /**
  *
@@ -33,6 +44,7 @@ export const login = (email, password) => {
 const Login = () => {
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
 
   return (
     <Container component='div' maxWidth='xs'>
@@ -49,6 +61,8 @@ const Login = () => {
           label="Email"
           name="email"
           autoComplete="email"
+          error={loginError}
+          helperText={loginError ? "Incorrect username or password." : null}
           onChange={(e) => setLoginUsername(e.target.value)}
         />
         <TextField
@@ -67,7 +81,8 @@ const Login = () => {
           fullWidth
           variant="contained"
           color="primary"
-          onClick={() => login(loginUsername, loginPassword)}>
+          onClick={() =>
+            login(loginUsername, loginPassword, setLoginError)}>
           Sign In
         </Button>
         <p className="message">

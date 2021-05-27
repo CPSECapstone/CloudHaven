@@ -36,7 +36,7 @@ const renderSidebarMenuOption = (listID, iconPath, urlPath, selected) => {
     );
 }
 
-const SideBar = () => {
+const SideBar = (props) => {
     const currentPath = window.location.pathname;
     const [menuListItemsConfig, setMenuListItemsConfig] = useState(baseMenuConfig);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -63,8 +63,11 @@ const SideBar = () => {
         };
      
         fetchUserVendors();
+        if (props.setUpdateSideBar) {
+            props.setUpdateSideBar(false);
+        }
 
-    }, []);
+    }, [props.updateSideBar]);
 
     return(
         <div className={isSidebarOpen ? "SideBar SideBarOpen" : "SideBar SideBarClosed"}>
