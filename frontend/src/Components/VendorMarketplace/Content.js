@@ -31,9 +31,6 @@ export default function Content(props) {
 
   const addUserService = async (serviceId) => {
     props.setUpdateSideBar(true)
-    console.log(serviceId);
-    console.log(userServices);
-    console.log(userServices.includes(serviceId));
     if (!userServices.includes(serviceId)) {
       setUserServices([...userServices, serviceId]);
       try {
