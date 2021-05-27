@@ -40,7 +40,10 @@ const Registration = () => {
              console.log('Registration fail');
           }
        })
-       .catch((err) => console.log('Error in logging in', err));
+       .catch((err) => {
+        console.log('error in logging in', err);
+        setEmailError('Email is already registered');
+      });
   }
 
   /** Checks to make sure passwords match
