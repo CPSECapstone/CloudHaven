@@ -29,9 +29,7 @@ router.post('/users/register', async (req, res) => {
             phone_number: req.body.phone_number,
             ssn: req.body.ssn,
             subscribed: [],
-            favorites: [],
          });
-      console.log(newUser);
 
       // Hash password before saving in database
       bcrypt.hash(newUser.password, 10, (err, hash) => {
@@ -75,18 +73,18 @@ router.get('/users/:_id/email', function(req, res) {
 router.get('/users/vendors',
    passport.authenticate('jwt', {session: false}),
    function(req, res) {
-      vendorsModel.find({vid: {$in: req.user.subscribed}},
+      vendorsModel.find({_id: {$in: req.user.subscribed}},
          function(err, vendors) {
             if (err) {
                res.send(err);
             } else {
-               const vendorsWithFavorites = vendors.map((vendorDoc) => {
+               const subscribedToVendors = vendors.map((vendorDoc) => {
                   const vendorObj = vendorDoc.toObject();
-                  vendorObj.isFavorite =
-                     req.user.favorites.includes(vendorDoc.vid);
+                  vendorObj.isSubscribed =
+                     req.user.subscribed.includes(vendorDoc._id);
                   return vendorObj;
                });
-               res.send(vendorsWithFavorites);
+               res.send(subscribedToVendors);
             }
          },
       );
@@ -101,7 +99,7 @@ router.post('/users/vendors',
       {$push: {subscribed: String(req.body.vendorId)}}, function(err, userData) {
          if (err || userData === null) {
             res.send('A database error occured while adding vendor: ' +
-            req.body.vid);
+            req.body.vendorId);
          } else {
             res.send(userData);
          }
@@ -117,7 +115,7 @@ router.delete('/users/vendors',
       {$pull: {subscribed: String(req.body.vendorId)}}, function(err, userData) {
       if (err || userData === null) {
          res.send('A database error occured while deleting vendor: ' +
-         req.body.vid);
+         req.body.vendorId);
       } else {
          res.send(userData);
       }

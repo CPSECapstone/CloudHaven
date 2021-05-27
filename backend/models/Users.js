@@ -33,10 +33,6 @@ const UserSchema = new Schema({
   subscribed: {
     type: Array,
     require: true
-  },
-  favorites: {
-    type: Array,
-    require: true
   }
 });
 
