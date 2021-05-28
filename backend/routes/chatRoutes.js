@@ -4,38 +4,27 @@ const router = new express.Router();
 // Data Models
 const chatModel = require("../models/Chats");
 
-// Grab All Messages By Sender
-router.get("/messages/sender/:user", function (req, res) {
-  eventModel.find({ sendor: req.parm.user }, function (err, chatData) {
-    if (err || chatData === null) {
-      res.send("User " + req.parm.user + " has not sent any messages");
-    } else {
-      const userChats = chatData.map((eventDoc) => {
-        return eventDoc.toObject();
-      });
-      res.send(userChats);
+// Grab All Chats By User
+router.get("/chats/:user", function (req, res) {
+  chatModel.find(
+    { participants: { $regex: req.parm.user } },
+    function (err, chatData) {
+      if (err || chatData === null) {
+        res.send("User " + req.parm.user + " has not sent any messages");
+      } else {
+        const userChats = chatData.map((chatDoc) => {
+          return chatDoc.toObject();
+        });
+        res.send(userChats);
+      }
     }
-  });
+  );
 });
 
-// Grab All Messages By Reciever
-router.get("/messages/reciever/:user", function (req, res) {
-  eventModel.find({ reciever: req.parm.user }, function (err, chatData) {
-    if (err || chatData === null) {
-      res.send("User " + req.parm.user + " has not recieved any messages");
-    } else {
-      const userChats = chatData.map((eventDoc) => {
-        return eventDoc.toObject();
-      });
-      res.send(userChats);
-    }
-  });
-});
-
-// Grab All Events By Sender and Vendor
-router.get("/messages/sender/:user/:vendor", function (req, res) {
-  eventModel.find(
-    { sender: req.parm.user, vendor: req.parm.vendor },
+// Grab All Chats By User and Vendor
+router.get("/chats/:user/:vendor", function (req, res) {
+  chatModel.find(
+    { participants: { $regex: req.parm.user }, vendor: req.parm.vendor },
     function (err, chatData) {
       if (err || chatData === null) {
         res.send(
@@ -45,8 +34,8 @@ router.get("/messages/sender/:user/:vendor", function (req, res) {
             req.parm.vendor
         );
       } else {
-        const userChats = chatData.map((eventDoc) => {
-          return eventDoc.toObject();
+        const userChats = chatData.map((chatDoc) => {
+          return chatDoc.toObject();
         });
         res.send(userChats);
       }
@@ -54,30 +43,8 @@ router.get("/messages/sender/:user/:vendor", function (req, res) {
   );
 });
 
-// Grab All Events By Reciever and Vendor
-router.get("/messages/reciever/:user/:vendor", function (req, res) {
-  eventModel.find(
-    { reciever: req.parm.user, vendor: req.parm.vendor },
-    function (err, chatData) {
-      if (err || chatData === null) {
-        res.send(
-          "User " +
-            req.parm.user +
-            " has not recieved any events assciated with Vendor " +
-            req.parm.vendor
-        );
-      } else {
-        const userChats = chatData.map((eventDoc) => {
-          return eventDoc.toObject();
-        });
-        res.send(userChats);
-      }
-    }
-  );
-});
-
-// Add, Edit, and Delete Events By Sendor
-router.post("/messages/:user", function (req, res) {
+// Add, Edit, and Delete Chats By Sendor
+router.post("/chats/:user", function (req, res) {
   var data = req.body;
 
   var mode = data["!nativeeditor_status"];
@@ -89,16 +56,16 @@ router.post("/messages/:user", function (req, res) {
   delete data["!nativeeditor_status"];
 
   if (mode == "updated") {
-    eventModel.updateOne(sid, data, update_response);
+    chatModel.updateOne(sid, data, update_response);
   } else if (mode == "inserted") {
-    const newEvent = new eventModel({
+    const newChat = new chatModel({
       participants: data.participants,
       vendor: data.vendor,
       messages: data.messages,
     });
-    newEvent.save(update_response);
+    newChat.save(update_response);
   } else if (mode == "deleted") {
-    eventModel.deleteOne(sid, update_response);
+    chatModel.deleteOne(sid, update_response);
   } else {
     res.send("Unsupported Operation");
   }
