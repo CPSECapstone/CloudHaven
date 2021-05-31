@@ -28,9 +28,7 @@ export class MyCalendar extends React.Component {
   render () {
     return (
       <Frame>
-        <Calendar
-          events={events}
-        />
+        <Calendar/>
       </Frame>
     )
   }
