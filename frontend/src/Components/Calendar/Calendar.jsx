@@ -1,78 +1,37 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import {
-    Frame,
-    Header,
-    Button,
-    Body,
-    Day
-} from "./Calendar.styled"
+import Calendar from 'react-awesome-calendar';
+import { Frame } from "./Calendar.styled";
 
-import {
-    DAYS,
-    DAYS_LEAP,
-    DAYS_OF_THE_WEEK,
-    MONTHS
-} from "../../Utils/constants"
+const events = [{
+  id: 1,
+  color: '#fd3153',
+  from: '2021-05-02T18:00:00+00:00',
+  to: '2021-05-05T19:00:00+00:00',
+  title: 'This is an event',
+  vendorId: '12'
+}, {
+  id: 2,
+  color: '#1ccb9e',
+  from: '2021-05-01T13:00:00+00:00',
+  to: '2021-05-05T14:00:00+00:00',
+  title: 'This is another event'
+}, {
+  id: 3,
+  color: '#3694DF',
+  from: '2021-05-05T13:00:00+00:00',
+  to: '2021-05-05T20:00:00+00:00',
+  title: 'This is also another event'
+}];
 
-export function Calendar() {
-
-  const getStartDayOfMonth = (date) => {
-      return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+export class MyCalendar extends React.Component {
+  render () {
+    return (
+      <Frame>
+        <Calendar
+          events={events}
+        />
+      </Frame>
+    )
   }
-
-  const isLeapYear = (year) => {
-    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-  }
-
-  const today = new Date();
-  const [date, setDate] = useState(today);
-  const [day, setDay] = useState(date.getDate());
-  const [month, setMonth] = useState(date.getMonth());
-  const [year, setYear] = useState(date.getFullYear());
-  const [startDay, setStartDay] = useState(getStartDayOfMonth(date));
-
-
-  useEffect(() => {
-    setDay(date.getDate());
-    setMonth(date.getMonth());
-    setYear(date.getFullYear());
-    setStartDay(getStartDayOfMonth(date));
-  }, [date]);
-
-  const days = isLeapYear(date.getFullYear()) ? DAYS_LEAP : DAYS;
-
-  return (
-    <Frame>
-      <Header>
-        <Button onClick={() => setDate(new Date(year, month - 1, day))}>Prev</Button>
-        <div>
-          {MONTHS[month]} {year}
-        </div>
-        <Button onClick={() => setDate(new Date(year, month + 1, day))}>Next</Button>
-      </Header>
-      <Body>
-        {DAYS_OF_THE_WEEK.map((dayName, index) => (
-          <Day key={dayName}>
-            <strong>{dayName}</strong>
-          </Day>
-        ))}
-        {Array(days[month] + (startDay - 1))
-          .fill(null)
-          .map((_, index) => {
-            const dayName = index - (startDay - 2);
-            return (
-              <Day
-                key={index}
-                isToday={dayName === today.getDate()}
-                isSelected={dayName === day}
-                onClick={() => setDate(new Date(year, month, dayName))}
-              >
-                {dayName > 0 ? dayName : ''}
-              </Day>
-            );
-          })}
-      </Body>
-    </Frame>
-  );
 }
