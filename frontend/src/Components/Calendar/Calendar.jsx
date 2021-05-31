@@ -13,7 +13,7 @@ import {
     DAYS_LEAP,
     DAYS_OF_THE_WEEK,
     MONTHS
-} from "../../utils/constants"
+} from "../../Utils/constants"
 
 export function Calendar() {
 
