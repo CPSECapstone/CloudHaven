@@ -1,0 +1,13 @@
+#!/bin/bash
+
+mvn clean install 
+
+if [ $? -eq 0 ]
+then
+  printf "\n\nSuccessful, Starting Project\n\n\n"
+  mvn exec:java
+else
+  echo "Install Failed, Check Tests or Dependencies"
+  echo "Make sure that `mvn` command works and that `mvn clean install` succeeds"
+fi
+
