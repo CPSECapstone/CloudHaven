@@ -11,13 +11,13 @@ export default (props) => {
         <Tabs defaultActiveKey="DynamicTab" id="uncontrolled-tab-example" className="Tabs">
             <Tab eventKey="DynamicTab" title={
 					<span> <img className="TabIcon" src={props.dynamicTabIcon} height="30"/> {props.dynamicTabTitle} </span>
-				}>
-               <UserProfile/ /* Add components to the first tab dynamically using props */ >
+				}/* Add components to the first tab dynamically using props */>
+               <UserProfile/>
             </Tab>
             <Tab eventKey="Messages" title={
 					<span> <img className="TabIcon" src={chatBubble} height="30"/> Messages </span>
 				}>
-               Messages goes here. 
+               Messages goes here.
             </Tab>
             <Tab eventKey="Calendar" title={
 					<span> <img className="TabIcon" src={calendar} height="30"/> Calendar </span>
