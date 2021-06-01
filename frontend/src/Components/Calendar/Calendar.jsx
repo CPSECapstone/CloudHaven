@@ -9,17 +9,25 @@ function MyCalendar() {
 
   useEffect(() => {
     //fetchEvents();
+    fetchUser();
   }, [])
 
   /*
   Calls calendar init route
 
   const fetchEvents = () => {
-    fetch("http://localhost:4000/calendar/init")
+    fetch("http://localhost:4000/calendar/:user")
       .then(res => res.text())
       .catch(err => console.err(err))
   }
-  */
+  */  
+
+  const fetchUser = () => {
+    fetch("http://localhost:4000//users/all")
+      .then(res => res.text())
+      .then(res => console.log(res))
+      .catch(err => console.err(err))
+  }
 
   let events = [];
 
@@ -27,12 +35,10 @@ function MyCalendar() {
   events.push({
     id: 1,
     color: '#3694DF',
-    from: '2021-05-05T13:00:00+00:00',
-    to: '2021-05-05T20:00:00+00:00',
+    from: '2021-07-05T13:00:00+00:00',
+    to: '2021-07-05T20:00:00+00:00',
     title: "new EVENT"
   });
-
-  console.log(events);
   
   return (
     <Frame>
