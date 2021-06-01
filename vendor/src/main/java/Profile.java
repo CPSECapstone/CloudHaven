@@ -3,7 +3,7 @@ import javax.json.JsonObjectBuilder;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class Profile extends GeneratedPage implements JsonData {
+public class Profile extends GeneratedPage implements JsonData{
   private final String fName;
   private final String lName;
   private final Date birthday;
@@ -31,19 +31,19 @@ public class Profile extends GeneratedPage implements JsonData {
     this.identifier = randomUUID();
     this.ssnToken = randomUUID();
   }
-  public Profile(String token) {
-    super(token);
-    this.fName = faker.name().firstName();
-    this.lName = faker.name().lastName();
-    this.birthday = faker.date().birthday();
-    this.cell = faker.phoneNumber().cellPhone();
-    this.address = faker.address().streetAddress(faker.bool().bool());
-    this.city = faker.address().city();
-    this.state = faker.address().state();
-    this.zip = faker.address().zipCode();
-    this.email = faker.internet().emailAddress();
-    this.identifier = randomUUID();
-    this.ssnToken = randomUUID();
+  public Profile(String token, Boolean random) {
+    super(token, random);
+    this.fName = provider.getFirstName();
+    this.lName = provider.getLastName();
+    this.birthday = provider.getBirthday();
+    this.cell = provider.getCellPhone();
+    this.address = provider.getAddress();
+    this.city = provider.getCity();
+    this.state = provider.getState();
+    this.zip = provider.getZipCode();
+    this.email = provider.getEmail();
+    this.identifier = provider.getUUID();
+    this.ssnToken = provider.getUUID();
   }
 
   @Override
@@ -56,7 +56,7 @@ public class Profile extends GeneratedPage implements JsonData {
 
   @Override
   protected JsonObjectBuilder seed(String token) {
-    Profile p = new Profile(token);
+    Profile p = new Profile(token, true);
     return p.toSendableJson();
   }
 
