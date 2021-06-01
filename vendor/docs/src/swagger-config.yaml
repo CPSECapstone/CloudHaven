@@ -1,0 +1,190 @@
+openapi: "3.0.0"
+info:
+  version: "0.0.1"
+  title: "Swagger UI Webpack Setup"
+  description: "Documentation for CloudHaven API and supported options"
+servers:
+  - url: "http://localhost:5000/"
+    description: "CloudHaven Backend"
+  - url: "http://localhost:4040/"
+    description: "Sample Vendor Queries"
+  - url: "Vendor URL"
+    description: "Start Vendor Backend"
+
+security:
+  - identity_server_auth:
+      - api
+paths:
+  /api/start-vendor-app/{vendorId}:
+    get:
+      tags:
+        - "CloudHaven Backend"
+      summary: "Pings /start-app endpoint for the given vendorId vendor app"
+      responses:
+        500:
+          description: "Unknown Error Occurs"
+        400:
+          description: "No Vendor ID Provided or Not Found"
+        200:
+          description: "OK"
+      parameters:
+        - name: vendorId
+          in: path
+          required: true
+          description: "ID of the vendor app we are looking to 'start'."
+          schema:
+            type: string or int
+  /table/{tableId}:
+    get:
+      tags:
+        - "Sample Vendor Queries"
+      summary: "retrieves a table"
+      operationId: "givenTable"
+      responses:
+        401:
+          description: "Unauthorized"
+        200:
+          description: "OK"
+      parameters:
+        - name: tableId
+          in: path
+          required: true
+          description: "ID of the table to retrieve."
+          schema:
+            type: string
+        - name: authentication
+          in: formData
+          required: false
+          description: "Authentication key to authenticate Cloudhaven to vendor. Currently not used"
+          schema:
+            type: string
+  /form/{formId}:
+    get:
+      tags:
+        - "Sample Vendor Queries"
+      summary: "retrieves a form"
+      operationId: "givenForm"
+      responses:
+        401:
+          description: "Unauthorized"
+        200:
+          description: "OK"
+      parameters:
+        - name: formId
+          in: path
+          required: true
+          description: "ID of the form to retrieve."
+          schema:
+            type: string
+        - name: authentication
+          in: formData
+          required: false
+          description: "Authentication key to authenticate Cloudhaven to vendor. Currently not used"
+          schema:
+            type: string
+  /profile/{userId}:
+    get:
+      tags:
+        - "Sample Vendor Queries"
+      summary: "retrieves the given user's profile"
+      operationId: "givenProfile"
+      responses:
+        401:
+          description: "Unauthorized"
+        200:
+          description: "OK"
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: "ID of the user's profile to retrieve."
+          schema:
+            type: string
+        - name: authentication
+          in: formData
+          required: false
+          description: "Authentication key to authenticate Cloudhaven to vendor. Currently not used"
+          schema:
+            type: string
+  /start-app:
+    get:
+      tags:
+        - "Start Vendor App Backend"
+      summary: "Retrieves the base JSON for the given Vendor App"
+      responses:
+        200:
+          description: "OK, Response includes index page json object of interest. Components is array of any given number of supported components"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  vendorid:
+                    type: integer
+                    description: "vendor's id"
+                    example: 1
+                  vendorauth:
+                    type: string
+                    description: "vendor's password/auth token"
+                  components:
+                    type: object
+                    description: "Components that will be rendered in ui"
+                    properties:
+                      component:
+                        type: string
+                        description: "name of component to render"
+                        example: "form, card, button, link, image, text, table"
+                      title:
+                        type: string
+                        description: "title of component"
+                      description:
+                        type: string
+                        description: "description of component"
+                      header:
+                        type: string
+                        description: "header of card"
+                        example: "Card option"
+                      body:
+                        type: string
+                        description: "body of card"
+                        example: "Card option"
+                      footer:
+                        type: string
+                        description: "footer of component"
+                        example: "Card option"
+                      text:
+                        type: string
+                        description: "text of button"
+                        example: "button option"
+                      submit_location:
+                        type: url
+                        description: "where to submit button"
+                        example: "button option"
+                      src:
+                        type: url
+                        description: "url for link or image"
+                        example: "link or image option"
+                      alt:
+                        type: string
+                        description: "alternative text for link or image"
+                        example: "link or image option"
+                      fields:
+                        type: object
+                        description: "fields to be rendered in component if applicable"
+                        properties:
+                          child:
+                            type: string
+                            description: "child component to be rendered, can be text or textField"
+                            example: "text || textField"
+                          match:
+                            type: regex
+                            description: "For authenticating (optional)"
+                          required:
+                            type: boolean
+                            description: "toggle to make field required"
+                          sensitive:
+                            type: boolean
+                            description: "toggle for case sensitivity"
+                          label:
+                            type: string
+                            description: "string label for field"

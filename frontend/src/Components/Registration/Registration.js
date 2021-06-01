@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {TextField, Button, Container} from '@material-ui/core';
 import axios from 'axios';
-import {login} from '../Login/Login';
+import {makeLoginPost as login} from '../Login/Login';
 
 const Registration = () => {
   const [email, setEmail] = useState('');
@@ -19,8 +19,6 @@ const Registration = () => {
   const handleSubmit = async () => {
     if (validateEntries()) {
       registerUser();
-      alert(`User registered: \n${email}
-      \n${email}`);
     }
   }
 
@@ -42,7 +40,10 @@ const Registration = () => {
              console.log('Registration fail');
           }
        })
-       .catch((err) => console.log('Error in logging in', err));
+       .catch((err) => {
+        console.log('error in logging in', err);
+        setEmailError('Email is already registered');
+      });
   }
 
   /** Checks to make sure passwords match
