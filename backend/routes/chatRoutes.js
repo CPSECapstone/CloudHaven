@@ -7,10 +7,10 @@ const chatModel = require("../models/Chats");
 // Grab All Chats By User
 router.get("/chats/:user", function (req, res) {
   chatModel.find(
-    { participants: { $regex: req.parm.user } },
+    { participants: req.params.user },
     function (err, chatData) {
       if (err || chatData === null) {
-        res.send("User " + req.parm.user + " has not sent any messages");
+        res.send("User " + req.params.user + " has not sent any messages");
       } else {
         const userChats = chatData.map((chatDoc) => {
           return chatDoc.toObject();
@@ -24,14 +24,14 @@ router.get("/chats/:user", function (req, res) {
 // Grab All Chats By User and Vendor
 router.get("/chats/:user/:vendor", function (req, res) {
   chatModel.find(
-    { participants: { $regex: req.parm.user }, vendor: req.parm.vendor },
+    { participants: req.params.user, vendor: req.params.vendor },
     function (err, chatData) {
       if (err || chatData === null) {
         res.send(
           "User " +
-            req.parm.user +
+            req.params.user +
             " has not sent any messages assciated with Vendor " +
-            req.parm.vendor
+            req.params.vendor
         );
       } else {
         const userChats = chatData.map((chatDoc) => {

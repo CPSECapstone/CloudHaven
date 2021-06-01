@@ -4,11 +4,15 @@ import { Background } from "./Chat.styled";
 import axios from "axios";
 
 const Chat = () => {
-  const user1 = "user1";
+  let user = "user1";
   const vendor = "vendor";
 
   const getUserVendorChats = async () => {
-    return await axios.post(`/chats/${user1}/${vendor}`);
+    const response = await axios('/users/all');
+    user = response.data._id;
+    console.log(user);
+    const chat = await axios.get(`/chats/${user}`);
+    console.log(chat.data);
   };
 
   const [data, setData] = useState(getUserVendorChats());
@@ -19,7 +23,7 @@ const Chat = () => {
         ...data,
         messages: data.messages.concat({
           author: {
-            username: user1,
+            username: user,
             id: 1, //TODO get user id
             avatarUrl: "https://image.flaticon.com/icons/svg/2446/2446032.svg", //TODO get userimage
           },
@@ -34,7 +38,7 @@ const Chat = () => {
   var user2;
   if (data.participants) {
     data.participants.forEach((participant) => {
-      if (participant != user1) {
+      if (participant != user) {
         user2 = participant;
       }
     });
