@@ -4,11 +4,20 @@ import Calendar from 'react-awesome-calendar';
 import { Frame } from "./Calendar.styled";
 
 function MyCalendar() {
+  
+  const [allEvents, setEvents] = useState([]);
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    fetchEvents();
+  }, [])
 
+  const fetchEvents = () => {
+
+  }
+  
   let events = [];
   
+  // Example Event
   events.push({
     id: 1,
     color: '#3694DF',
