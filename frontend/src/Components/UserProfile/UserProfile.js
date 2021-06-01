@@ -87,7 +87,7 @@ const UserProfile = () => {
 
     const ManageDataButton = () => {
         return (
-            <Button className='ManageData' onClick={setUserDataPopup(true)}>
+            <Button className='ManageData' onClick={() => setUserDataPopup(true)}>
                 {console.log(userDataPopup)}
                 <img className="SettingsIcon" src={settings} height="30" />
                 <a className="ManageDataText"> <u>Manage Data</u> </a>
