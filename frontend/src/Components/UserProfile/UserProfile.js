@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from 'react';
 import { Container, Row, Col, Button, Nav } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
@@ -12,72 +12,75 @@ import './UserProfile.css'
 
 const UserProfile = () => {
 
-    const [ editing, setEditing ] = React.useState(false);
+    const [ isEditing, setIsEditing ] = useState(false);
+    const [ buttonText, setButtonText ] = useState('Edit');
 
     // TO DO: pull user info from passport/backend
-    const [ firstName, setFirstName ] = React.useState('Johnald');
-    const [ lastName, setLastName ] = React.useState('Testman');
-    const [ email, setEmail ] = React.useState('test@test.gov');
-    const [ phoneNumber, setPhoneNumber ] = React.useState('555-555-5555');
-    const [ birthDate, setBirthDate ] = React.useState('2021-01-01');
-    const [ buttonText, setButtonText ] = React.useState("Edit");
-    const [ userDataPopup, setUserDataPopup ] = React.useState(false);
+    const [ userData, setUserData ] = useState({
+        firstName: 'Johnald',
+        lastName: 'Testman',
+        email: 'test@test.gov',
+        phoneNumber: '555-555-5555',
+        birthDate: '2021-01-01'
+    })
 
-    const [ firstNameFormData, setFirstNameFormData ] = React.useState({
-        controlId: 'formFirstName',
+    const [ firstNameFormData, setFirstNameFormData ] = useState({
+        controlId: 'firstName',
         label: 'First Name',
         type: 'name',
         focus: null
     })
-    const [ lastNameFormData, setlastNameFormData ] = React.useState({
-        controlId: 'formlastName',
+    const [ lastNameFormData, setlastNameFormData ] = useState({
+        controlId: 'lastName',
         label: 'Last Name',
         type: 'name',
         focus: null
     })
-    const [ emailFormData, setEmailFormData ] = React.useState({
-        controlId: 'formEmail',
+    const [ emailFormData, setEmailFormData ] = useState({
+        controlId: 'email',
         label: 'Email Address',
         type: 'email',
         focus: null
     })
-    const [ phoneFormData, setPhoneFormData ] = React.useState({
-        controlId: 'formPhone',
+    const [ phoneFormData, setPhoneFormData ] = useState({
+        controlId: 'phoneNumber',
         label: 'Phone Number',
         type: 'tel',
         focus: null
     })
-    const [ birthFormData, setBirthFormData ] = React.useState({
-        controlId: 'formBirth',
+    const [ birthFormData, setBirthFormData ] = useState({
+        controlId: 'birthDate',
         label: 'Date of Birth',
         type: 'date',
         focus: null
     })
 
     const toggleEditing = () => {
-        setEditing(!editing);
+        setIsEditing(!isEditing);
 
-        if (!editing) {
-            setButtonText("Save")
+        if (!isEditing) {
+            setButtonText('Save')
         }
         else {
-            setButtonText("Edit")
+            setButtonText('Edit')
         }
     };
 
-    const ProfileHeader = () => {
-        return (
-            <Container className='d-flex align-items-start justify-content-between'>
-                <img src={spacer} height="130" />
-                <img src={profile} height="150" />
-                <EditButton/>
-            </Container>
-        )
+    const handleUserDataChange = e => {
+        const { name, value } = e.target;
+        setUserData(prevUserData => ({
+            ...prevUserData,
+            [name]: value
+        }));
     }
 
-    const EditButton = () => {
+    const ProfileHeader = () => {
         return (
-            <Button className='EditButton' onClick={toggleEditing}>{buttonText}</Button>
+            <Container className='ProfileHeader'>
+                <img src={spacer} height='130' />
+                <img src={profile} height='150' />
+                <Button className='EditButton' onClick={toggleEditing}>{buttonText}</Button>
+            </Container>
         )
     }
 
@@ -99,24 +102,25 @@ const UserProfile = () => {
                 <UserDataPopup display={userDataPopup} onClose={() => setUserDataPopup(false)}/>
             </div>
             <ProfileHeader/>
-                <header className="AccordionHeader">Personal Information</header>
+                <header className='AccordionHeader'>Personal Information</header>
             <Accordion className='InfoAccordion'>
                 <Card className='AccordionCard'>
-                    <Accordion.Toggle as={Card.Body} eventKey="0" >
-                        <img className="Caret" src={caretDown} height="30" />
+                    <Accordion.Toggle as={Card.Body} eventKey='0' >
+                        <img className='Caret' src={caretDown} height='30' />
                     </Accordion.Toggle>
 
-                    <Accordion.Collapse eventKey="0">
+                    <Accordion.Collapse eventKey='0'>
                         <Form>
                             <Row>
                                 <Col>
                                     <Form.Group controlId={firstNameFormData.controlId}>
                                         <Form.Label>{firstNameFormData.label}</Form.Label>
                                         <Form.Control
+                                            name={firstNameFormData.controlId}
                                             type={firstNameFormData.type}
-                                            value={firstName}
-                                            onChange={e => setFirstName(e.target.value)}
-                                            disabled={!editing} />
+                                            value={userData.firstName}
+                                            onChange={handleUserDataChange}
+                                            disabled={!isEditing} />
                                     </Form.Group>
                                 </Col>
 
@@ -124,10 +128,11 @@ const UserProfile = () => {
                                     <Form.Group controlId={lastNameFormData.controlId}>
                                         <Form.Label>{lastNameFormData.label}</Form.Label>
                                         <Form.Control
+                                            name={lastNameFormData.controlId}
                                             type={lastNameFormData.type}
-                                            value={lastName}
-                                            onChange={e => setLastName(e.target.value)}
-                                            disabled={!editing} />
+                                            value={userData.lastName}
+                                            onChange={handleUserDataChange}
+                                            disabled={!isEditing} />
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -137,10 +142,11 @@ const UserProfile = () => {
                                     <Form.Group controlId={emailFormData.controlId}>
                                         <Form.Label>{emailFormData.label}</Form.Label>
                                         <Form.Control
+                                            name={emailFormData.controlId}
                                             type={emailFormData.type}
-                                            value={email}
-                                            onChange={e => setEmail(e.target.value)}
-                                            disabled={!editing} />
+                                            value={userData.email}
+                                            onChange={handleUserDataChange}
+                                            disabled={!isEditing} />
                                     </Form.Group>
                                 </Col>
 
@@ -148,10 +154,11 @@ const UserProfile = () => {
                                     <Form.Group controlId={phoneFormData.controlId}>
                                         <Form.Label>{phoneFormData.label}</Form.Label>
                                         <Form.Control
+                                            name={phoneFormData.controlId}
                                             type={phoneFormData.type}
-                                            value={phoneNumber}
-                                            onChange={e => setFirstName(e.target.value)}
-                                            disabled={!editing} />
+                                            value={userData.phoneNumber}
+                                            onChange={handleUserDataChange}
+                                            disabled={!isEditing} />
                                     </Form.Group>
                                 </Col>
 
@@ -159,10 +166,11 @@ const UserProfile = () => {
                                     <Form.Group controlId={birthFormData.controlId}>
                                         <Form.Label>{birthFormData.label}</Form.Label>
                                         <Form.Control
+                                            name={birthFormData.controlId}
                                             type={birthFormData.type}
-                                            value={lastName}
-                                            onChange={e => setFirstName(e.target.value)}
-                                            disabled={!editing} />
+                                            value={userData.lastName}
+                                            onChange={handleUserDataChange}
+                                            disabled={!isEditing} />
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -171,13 +179,13 @@ const UserProfile = () => {
                 </Card>
             </Accordion>
 
-            <header className="AccordionHeader">Other Information</header>
+            <header className='AccordionHeader'>Other Information</header>
             <Accordion className='InfoAccordion'>
                 <Card className='AccordionCard'>
-                    <Accordion.Toggle as={Card.Body} eventKey="0" >
-                        <img className="Caret" src={caretDown} height="30" />
+                    <Accordion.Toggle as={Card.Body} eventKey='0' >
+                        <img className='Caret' src={caretDown} height='30' />
                     </Accordion.Toggle>
-                    <Accordion.Collapse eventKey="0">
+                    <Accordion.Collapse eventKey='0'>
                         <Card.Body>
                             Other information goes here.
                         </Card.Body>
