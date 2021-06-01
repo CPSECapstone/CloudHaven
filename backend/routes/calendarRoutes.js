@@ -113,7 +113,7 @@ router.post('/calendar/:user', function(req, res) {
       eventModel.updateOne(sid, data, update_response);
    } else if (mode == "inserted") {
       const newEvent = new eventModel({
-         user: data.user,
+         user: req.param.user,
          vendor: data.vendor,
          text: data.text,
          start_date: data.start_date,
