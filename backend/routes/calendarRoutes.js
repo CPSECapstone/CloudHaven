@@ -59,9 +59,9 @@ router.get('/calendar/init', function(req, res){
 
 // Grab All Events By User
 router.get('/calendar/:user', function(req, res) {
-   eventModel.find({user: req.parm.user}, (function(err, eventData) {
+   eventModel.find({user: req.param.user}, (function(err, eventData) {
       if (err || eventData === null) {
-         res.send("User " + req.parm.user + " does not have any events");
+         res.send("User " + req.param.user + " does not have any events");
       } else {
          const userEvents = eventData.map((eventDoc) => {
             return eventDoc.toObject();
@@ -74,9 +74,9 @@ router.get('/calendar/:user', function(req, res) {
 
 // Grab All Events By User and Vendor
 router.get('/calendar/:user/:vendor', function(req, res) {
-   eventModel.find({user: req.parm.user, vendor: req.parm.vendor}, (function(err, eventData) {
+   eventModel.find({user: req.param.user, vendor: req.param.vendor}, (function(err, eventData) {
       if (err || eventData === null) {
-         res.send("User " + req.parm.user + " does not have any events assciated with Vendor " + req.parm.vendor);
+         res.send("User " + req.param.user + " does not have any events assciated with Vendor " + req.param.vendor);
       } else {
          const userEvents = eventData.map((eventDoc) => {
             return eventDoc.toObject();

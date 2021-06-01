@@ -4,19 +4,25 @@ import Calendar from 'react-awesome-calendar';
 import { Frame } from "./Calendar.styled";
 
 function MyCalendar() {
-  
+
   const [allEvents, setEvents] = useState([]);
 
   useEffect(() => {
     fetchEvents();
   }, [])
 
-  const fetchEvents = () => {
+  /*
+  Calls calendar init route
 
+  const fetchEvents = () => {
+    fetch("http://localhost:4000/calendar/init")
+      .then(res => res.text())
+      .catch(err => console.err(err))
   }
-  
+  */
+
   let events = [];
-  
+
   // Example Event
   events.push({
     id: 1,
