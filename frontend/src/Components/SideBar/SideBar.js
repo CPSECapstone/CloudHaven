@@ -75,7 +75,6 @@ const SideBar = (props) => {
             <ul>
                 {menuListItemsConfig.map((itemConfig) => renderSidebarMenuOption(itemConfig.listID, itemConfig.iconPath, itemConfig.urlPath, currentPath===itemConfig.urlPath))}
             </ul>
-
         </div>
     );
 }
