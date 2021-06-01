@@ -14,6 +14,7 @@ const UserProfile = () => {
 
     const [ isEditing, setIsEditing ] = useState(false);
     const [ buttonText, setButtonText ] = useState('Edit');
+    const [ userDataPopup, setUserDataPopup ] = useState(false);
 
     // TO DO: pull user info from passport/backend
     const [ userData, setUserData ] = useState({
