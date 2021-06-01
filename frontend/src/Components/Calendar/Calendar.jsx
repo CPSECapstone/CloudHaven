@@ -10,6 +10,7 @@ function MyCalendar() {
 
   useEffect(() => {
     //fetchEvents();
+    fetchUser();
   }, [])
 
   const [allEvents, setEvents] = useState([]);
