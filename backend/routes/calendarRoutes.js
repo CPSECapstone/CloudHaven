@@ -59,9 +59,9 @@ router.get('/calendar/init', function(req, res){
 
 // Grab All Events By User
 router.get('/calendar/:user', function(req, res) {
-   eventModel.find({user: req.param.user}, (function(err, eventData) {
+   eventModel.find({user: req.params.user}, (function(err, eventData) {
       if (err || eventData === null) {
-         res.send("User " + req.param.user + " does not have any events");
+         res.send("User " + req.params.user + " does not have any events");
       } else {
          const userEvents = eventData.map((eventDoc) => {
             return eventDoc.toObject();
@@ -74,9 +74,9 @@ router.get('/calendar/:user', function(req, res) {
 
 // Grab All Events By User and Vendor
 router.get('/calendar/:user/:vendor', function(req, res) {
-   eventModel.find({user: req.param.user, vendor: req.param.vendor}, (function(err, eventData) {
+   eventModel.find({user: req.params.user, vendor: req.params.vendor}, (function(err, eventData) {
       if (err || eventData === null) {
-         res.send("User " + req.param.user + " does not have any events assciated with Vendor " + req.param.vendor);
+         res.send("User " + req.params.user + " does not have any events assciated with Vendor " + req.params.vendor);
       } else {
          const userEvents = eventData.map((eventDoc) => {
             return eventDoc.toObject();
@@ -113,7 +113,7 @@ router.post('/calendar/:user', function(req, res) {
       eventModel.updateOne(sid, data, update_response);
    } else if (mode == "inserted") {
       const newEvent = new eventModel({
-         user: req.param.user,
+         user: req.params.user,
          vendor: data.vendor,
          text: data.text,
          start_date: data.start_date,
