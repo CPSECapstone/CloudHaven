@@ -11,7 +11,7 @@ export default props => {
             <Row className="AppDataRow">
                 <Col>
                     <div className="VendorIcon">
-                        <img src={props.icon} height="84"/>
+                    <i className="fa fa-home fa-lg fa-fw">{props.icon}</i>
                     </div>
                 </Col>
                 <Col>
