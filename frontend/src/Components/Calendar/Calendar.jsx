@@ -9,7 +9,7 @@ function MyCalendar() {
   const [allEvents, setEvents] = useState([]);
 
   useEffect(() => {
-    fetchEvents();
+    //fetchEvents();
   }, [])
 
   const [allEvents, setEvents] = useState([]);
