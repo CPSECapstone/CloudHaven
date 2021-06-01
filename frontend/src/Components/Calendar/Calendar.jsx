@@ -5,6 +5,12 @@ import { Frame } from "./Calendar.styled";
 import axios from 'axios';
 
 function MyCalendar() {
+  
+  const [allEvents, setEvents] = useState([]);
+
+  useEffect(() => {
+    fetchEvents();
+  }, [])
 
   const [allEvents, setEvents] = useState([]);
   let events = [];
