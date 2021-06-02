@@ -32,6 +32,7 @@ const Registration = () => {
           first_name: firstName,
           last_name: lastName,
           phone_number: phoneNumber,
+          birth_date: birthday,
           ssn
        })
        .then((res) => {
@@ -127,6 +128,7 @@ const Registration = () => {
         fullWidth
         name="birthday"
         label="Date of Birth"
+        defaultValue={new Date().toJSON().slice(0,10)}
         onChange={(e) => setBirthday(e.target.value)}
       />
       <TextField
