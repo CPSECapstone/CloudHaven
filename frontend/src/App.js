@@ -6,7 +6,6 @@ import PrivateRoute from './CustomRoutes/PrivateRoute';
 import PublicRoute from './CustomRoutes/PublicRoute';
 import LandingPage from './Components/LandingPage/LandingPage'
 import VendorMarketplace from './Components/VendorMarketplace/VendorMarketplace';
-import axios from 'axios';
 
 function App () {
 
