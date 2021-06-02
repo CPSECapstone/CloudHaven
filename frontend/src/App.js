@@ -28,8 +28,11 @@ function App () {
 
           {/* hard-coded app paths for the sake of demo */}
           <PublicRoute restricted={false} path={PATH_ID_TESTSERVICE['path']} 
-            component={VendorApp} />
-          <PublicRoute restricted={false} path={PATH_ID_EMAIL['path']} component={VendorMarketplace}/>
+            component={VendorApp} 
+            vendorId={PATH_ID_TESTSERVICE['vendorId']}/>
+          <PublicRoute restricted={false} path={PATH_ID_EMAIL['path']}
+            component={VendorApp}
+            vendorId={PATH_ID_EMAIL['vendorId']} />
           <PublicRoute restricted={false} path={PATH_ID_ONEDRIVE['path']} component={VendorMarketplace}/>
           <PublicRoute restricted={false} path={PATH_ID_SAMPLEFLOW['path']} component={VendorMarketplace}/>
           <PublicRoute restricted={false} path={PATH_ID_GOOGLESHEETS['path']} component={VendorMarketplace}/>

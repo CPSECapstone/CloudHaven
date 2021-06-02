@@ -14,7 +14,7 @@ export default ({ files, setCurrentFile, currentFileIndex }) => {
                         itemId={item_id}
                         title={title}
                         onClick={() => setCurrentFile(item_id)}
-                        isSelected={item_id == currentFileIndex}
+                        isSelected={item_id === currentFileIndex}
                     />
                 )
             })}

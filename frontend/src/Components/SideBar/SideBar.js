@@ -53,7 +53,6 @@ const SideBar = (props) => {
     
                 for (const item of response.data) {
                     const config = {iconPath: questionMarkIcon, urlPath: item.home_route, listID: item.name}
-                    console.log(config);
                     newMenu.splice(1, 0, config)
                 }
          
