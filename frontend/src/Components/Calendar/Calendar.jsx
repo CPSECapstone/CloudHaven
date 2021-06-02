@@ -17,39 +17,36 @@ function MyCalendar() {
   let events = [];
 
   useEffect(() => {
-    fetchUser();
-    fetchEvents();
+    fetchUserEvents();
   }, [])
 
-  /*
-  Calls calendar init route
+  useEffect(() => {
+    createEvents();
+  }, [allEvents])
 
-  const fetchEvents = () => {
-    fetch("http://localhost:4000/calendar/:user")
-      .then(res => res.text())
-      .catch(err => console.err(err))
-  }
-  */  
-
-  const fetchEvents = async () => {
-    events.push({
-      id: 1,
-      color: '#3694DF',
-      from: '2021-06-05T13:00:00+00:00',
-      to: '2021-06-05T20:00:00+00:00',
-      title: "new EVENT"
-    });
-  }
-
-  const fetchUser = async () => {
+  const fetchUserEvents= async () => {
     try {
         const response = await axios('/users/all');
-        console.log(response.data)
+        const allEvents = await axios('/calendar/' + response.data._id);
+        setEvents(allEvents.data);
+
     } catch (err) {
-        console.log(err + ' | Failed to get user data');
+        console.log(err + ' | Failed to get user events');
     }
   };
-  
+
+  const createEvents = () => {
+    for (const event of allEvents) {
+      events.push({
+        id: event._id,
+        color: '#3694DF',
+        from: event.start_date,
+        to: event.end_date,
+        title: event.desc
+      });
+    }
+  }
+
   return (
     <Frame>
       <Calendar
