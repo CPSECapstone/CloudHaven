@@ -6,37 +6,8 @@ import PrivateRoute from './CustomRoutes/PrivateRoute';
 import PublicRoute from './CustomRoutes/PublicRoute';
 import LandingPage from './Components/LandingPage/LandingPage'
 import VendorMarketplace from './Components/VendorMarketplace/VendorMarketplace';
-import axios from 'axios';
 
-const App = (props) => {
-  const [vendorRoutes, setVendorRoutes] = useState([]);
-
-  useEffect(() => {
-    const getVendorRoutes = async () => {
-      try {
-        const response = await axios('/vendors');
-        for (const item of response.data) {
-          setVendorRoutes(vendorRoutes => [...vendorRoutes, item.home_route])
-        }
-      } catch (err) {
-        console.log(err + ' | Failed to get all vendors');
-      }
-    };
-    getVendorRoutes();
-
-    if (props.setUpdateApp) {
-      props.setUpdateApp(false);
-    }
-  }, [props.updateApp]);
-
-  const populateRoutes = () => {
-    console.log(vendorRoutes);
-    return (vendorRoutes).map((pathName) => {
-      return (
-        <PublicRoute restricted={false} path={pathName} component = {VendorMarketplace}/>
-      );
-    })
-  }
+function App () {
 
   return (
     <BrowserRouter>
@@ -47,7 +18,12 @@ const App = (props) => {
           <PublicRoute restricted={true} path='/register'
             component={Registration}/>
           <PublicRoute restricted={false} path='/market' component={VendorMarketplace}/>
-          {populateRoutes()}
+          <PublicRoute restricted={false} path='/TestService' component={VendorMarketplace}/>
+          <PublicRoute restricted={false} path='/Email' component={VendorMarketplace}/>
+          <PublicRoute restricted={false} path='/OneDrive' component={VendorMarketplace}/>
+          <PublicRoute restricted={false} path='/SampleFlow' component={VendorMarketplace}/>
+          <PublicRoute restricted={false} path='/GoogleSheets' component={VendorMarketplace}/>
+          <PublicRoute restricted={false} path='/GoogleDocs' component={VendorMarketplace}/>
           <PublicRoute restricted={false} path='/404' component = {_404}/>
           <Redirect to='/404' />
         </Switch>
