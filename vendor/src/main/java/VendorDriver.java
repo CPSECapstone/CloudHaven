@@ -10,6 +10,8 @@ import java.net.InetSocketAddress;
 import java.util.UUID;
 
 public class VendorDriver {
+  private static final String CLOUDHAVEN_URL = "http://localhost:3000";
+
   private static UUID vendorId = UUID.randomUUID();
   private static UUID vendorAuth = UUID.randomUUID();
 
@@ -22,7 +24,8 @@ public class VendorDriver {
   }
 
   private static void handleRequest(HttpExchange exchange) throws IOException {
-    exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+    exchange.getResponseHeaders().add("Access-Control-Allow-Origin", CLOUDHAVEN_URL);
+    exchange.getResponseHeaders().add("Access-Control-Allow-Credentials", "true");
     String[] pathComponents = exchange.getRequestURI().getPath().split("/");
     if (pathComponents.length > 2 && pathComponents[1].equals("profile")) {
       handleValidRequest(exchange, pathComponents[2], Profile.class);

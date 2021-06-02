@@ -1,21 +1,20 @@
 import React from 'react'
 import './FileList.css'
 
-export default ({ files, setCurrentFile, currentFileId }) => {
+export default ({ files, setCurrentFile, currentFileIndex }) => {
+    var counter = 0;
     return (
         <ul id="FileList">
             <h2 id="FileListTitle">File List</h2>
             {files.map((file) => {
-                const { id, title, datePosted, dueDate, filePath } = file
+                const { title } = file;
+                const item_id = counter++;
                 return (
                     <FileItem
-                        itemId={id}
+                        itemId={item_id}
                         title={title}
-                        datePosted={datePosted}
-                        dueDate={dueDate}
-                        filePath={filePath}
-                        onClick={() => setCurrentFile(id)}
-                        isSelected={id == currentFileId}
+                        onClick={() => setCurrentFile(item_id)}
+                        isSelected={item_id == currentFileIndex}
                     />
                 )
             })}
@@ -27,8 +26,6 @@ const FileItem = (props) => {
     const {
         itemId,
         title,
-        datePosted,
-        dueDate,
         onClick,
         isSelected,
     } = props
@@ -40,8 +37,6 @@ const FileItem = (props) => {
                 onClick={onClick}
             >
                 <h3 className="ItemTitle">{title}</h3>
-                <div className="DateField">Posted: {datePosted}</div>
-                <div className="DateField">Posted: {dueDate}</div>
             </button>
         </li>
     )
