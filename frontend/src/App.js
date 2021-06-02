@@ -1,6 +1,6 @@
 import { Home, Login, Registration, _404 } from './Components/components';
 import './App.css';
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {BrowserRouter, Redirect, Switch} from 'react-router-dom';
 import PrivateRoute from './CustomRoutes/PrivateRoute';
 import PublicRoute from './CustomRoutes/PublicRoute';
