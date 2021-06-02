@@ -56,7 +56,7 @@ public class Profile extends GeneratedPage implements JsonData{
 
   @Override
   protected JsonObjectBuilder seed(String token) {
-    Profile p = new Profile(token, true);
+    Profile p = new Profile(token, false);
     return p.toSendableJson();
   }
 

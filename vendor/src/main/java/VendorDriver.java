@@ -10,8 +10,12 @@ import java.net.InetSocketAddress;
 import java.util.UUID;
 
 public class VendorDriver {
-  private static UUID vendorId = UUID.randomUUID();
-  private static UUID vendorAuth = UUID.randomUUID();
+  /*
+  *  <TODO> establish a seeded vendorId and vendorAuth in a later sprint.
+  *  For now, we'll use hard-coded as an example (this id/auth is not currently used anywhere in the app)
+  */
+  private static UUID vendorId = UUID.fromString("552b0e21-6dca-4753-8221-8c0fd29860fb");
+  private static UUID vendorAuth = UUID.fromString("8baf8ad4-af2d-445e-8694-95287c70d13b");
 
   public static void main(String[] args) throws IOException {
     System.out.println("Starting Java Vendor App");
@@ -32,7 +36,7 @@ public class VendorDriver {
       handleValidRequest(exchange, pathComponents[2], Table.class);
     } else if (pathComponents.length > 2 && pathComponents[1].equals("forms")) {
       handleValidRequest(exchange, pathComponents[2], Forms.class);
-    } else if (pathComponents.length > 2 && pathComponents[1].equals("submit")) {
+    } else if (pathComponents.length > 1 && pathComponents[1].equals("submit")) {
       handleSubmit(exchange);
     } else {
       errorResponse(exchange, 404);
