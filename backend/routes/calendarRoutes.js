@@ -30,7 +30,7 @@ router.get('/calendar/init', function(req, res){
 
    const newEvent4 = new eventModel({
       user: 'TestUser1',
-      text: 'CSC 406 End of Sprint Meeting',
+      desc: 'CSC 406 End of Sprint Meeting',
       start_date: new Date(2021, 5, 6, 12, 10),
       end_date: new Date(2021, 5, 6, 15),
    });
@@ -47,7 +47,7 @@ router.get('/calendar/init', function(req, res){
    const newEvent6 = new eventModel({
       user: 'TestUser1',
       vendor: 'TestVendor1',
-      text: 'CSC 406 End of Sprint Meeting',
+      desc: 'CSC 406 End of Sprint Meeting',
       start_date: new Date(2021, 5, 6, 12, 10),
       end_date: new Date(2021, 5, 6, 15),
       color: 0x330099
@@ -92,7 +92,7 @@ router.post('/calendar/:user', function(req, res) {
    const newEvent = new eventModel({
       user: req.params.user,
       vendor: req.body.vendor,
-      text: req.body.text,
+      desc: req.body.text,
       start_date: req.body.start_date,
       end_date: req.body.end_date,
       color: req.body.color
@@ -110,7 +110,7 @@ router.post('/calendar/:user', function(req, res) {
 // Update Event
 router.post('calendar/edit/:event', function(req, res) {
    var update = {
-      text: req.body.text,
+      desc: req.body.text,
       start_date: req.body.start_date,
       end_date: req.body.end_date,
       color: req.body.color
