@@ -7,7 +7,6 @@ import axios from 'axios';
 const EventMaker = () => {
   const triggerText = "Add Event";
 
-  
   const onSubmit = (event) => {
     event.preventDefault(event);
     let name = event.target.name.value;

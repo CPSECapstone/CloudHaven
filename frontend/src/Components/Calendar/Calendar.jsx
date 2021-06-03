@@ -44,26 +44,6 @@ function MyCalendar() {
     }
   };
 
-  const addEvent = async (vendorId, title, start, end, color) => {
-    try {
-      const res = await axios.post('/calendar/' + userId, {
-        _id : userId,
-        user : userId,
-        vendor : vendorId,
-        text : title,
-        start_date : start,
-        end_date : end,
-        color : color
-      });
-      console.log(res);
-    } catch (err) {
-        console.log(err + ' | Failed to add new event');
-    }
-  };
-
-  // Example call to addEvent after modal submit
-  //addEvent(1, "HelloTest",'2021-06-06T19:10:00.000+00:00','2021-06-06T22:00:00.000+00:00',null);
-
   const createEvents = () => {
     for (const event of allEvents) {
       events.push({
