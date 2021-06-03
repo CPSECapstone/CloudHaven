@@ -11,21 +11,16 @@ export const Form = ({ onSubmit }) => {
         <input className="form-control" id="name" />
       </div>
       <div className="form-group">
-        <label htmlFor="start">Starting time (YYYY-DD-MM HH:MM) </label>
+        <label htmlFor="start">Starting time (YYYY-MM-DD HH:MM) </label>
         <input className="form-control" id="start" />
-        {/* <DateSelector id="StartTime"></DateSelector> */}
-        {/* <DatePicker></DatePicker> */}
-        {/* <input className="form-control" id="name" /> */}
       </div>
       <div className="form-group">
-        <label htmlFor="end">Ending Time (YYYY-DD-MM HH:MM) </label>
+        <label htmlFor="end">Ending Time (YYYY-MM-DD HH:MM) </label>
         <input className="form-control" id="end" />
-        {/* <DatePicker></DatePicker> */}
-        {/* <DateSelector id="EndTime"></DateSelector> */}
       </div>
       <div className="form-group">
-        <label htmlFor="vendor">Vendor Application</label>
-        <input className="form-control" id="vendor" />
+        <label htmlFor="color">Color in Hex (#RRGGBB)</label>
+        <input className="form-control" id="color" />
       </div>
       <div className="form-group">
         <button className="form-control btn btn-primary" type="submit">

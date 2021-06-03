@@ -13,17 +13,10 @@ const EventMaker = () => {
     let name = event.target.name.value;
     let start = new Date(event.target.start.value);
     let end = new Date(event.target.end.value);
+    let color = event.target.color.value;
     
     
-    addEvent(null, name, start, end, 0x5442f5);
-
-    // console.log(event);
-    // console.log(event.target);
-    console.log(event.target.name.value);
-    console.log(event.target.start.value);
-    console.log(event.target.end.value);
-    console.log(event.target.vendor.value);
-    
+    addEvent(null, name, start, end, color);
   };
   return (
     <div className="App">

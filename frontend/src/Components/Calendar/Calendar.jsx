@@ -68,7 +68,7 @@ function MyCalendar() {
     for (const event of allEvents) {
       events.push({
         id: event._id,
-        color: '#3694DF',
+        color: event.color,
         from: event.start_date,
         to: event.end_date,
         title: event.desc
