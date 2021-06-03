@@ -1,8 +1,17 @@
 import React, {useState} from 'react';
 import {Link, withRouter} from 'react-router-dom';
-import {TextField, Button, Container} from '@material-ui/core';
+import {TextField, Container} from '@material-ui/core';
 import axios from 'axios';
 import {login} from '../Login/Login';
+import {
+  Background,
+  Title,
+  SubText,
+  ButtonRow,
+  Button
+} from './JsDemo.styled'
+
+
 
 const JsDemo = () => {
   /**
@@ -23,19 +32,24 @@ const JsDemo = () => {
   }
 
   return (
+    <Background>
     <Container maxWidth='sm'>
-      <Container maxWidth='sm'>
-        <h2>Foreign JS execution demo</h2>
-      </Container>
+      <Title>
+        <Container maxWidth='sm'>
+          <h2>Foreign JS Execution Demo</h2>
+        </Container>
+      </Title>
       <Button
         onClick={fetchJs}
         fullWidth
         variant="contained"
         color="primary"
       >
-        Sign Up
+        Create Dynamic Component
       </Button>
     </Container>
+    </Background>
+
   );
 };
 
