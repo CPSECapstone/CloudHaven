@@ -30,7 +30,7 @@ router.get('/calendar/init', function(req, res){
 
    const newEvent4 = new eventModel({
       user: 'TestUser1',
-      text: 'CSC 406 End of Sprint Meeting',
+      desc: 'CSC 406 End of Sprint Meeting',
       start_date: new Date(2021, 5, 6, 12, 10),
       end_date: new Date(2021, 5, 6, 15),
    });
@@ -47,7 +47,7 @@ router.get('/calendar/init', function(req, res){
    const newEvent6 = new eventModel({
       user: 'TestUser1',
       vendor: 'TestVendor1',
-      text: 'CSC 406 End of Sprint Meeting',
+      desc: 'CSC 406 End of Sprint Meeting',
       start_date: new Date(2021, 5, 6, 12, 10),
       end_date: new Date(2021, 5, 6, 15),
       color: 0x330099
@@ -59,9 +59,9 @@ router.get('/calendar/init', function(req, res){
 
 // Grab All Events By User
 router.get('/calendar/:user', function(req, res) {
-   eventModel.find({user: req.parm.user}, (function(err, eventData) {
+   eventModel.find({user: req.params.user}, (function(err, eventData) {
       if (err || eventData === null) {
-         res.send("User " + req.parm.user + " does not have any events");
+         res.send("User " + req.params.user + " does not have any events");
       } else {
          const userEvents = eventData.map((eventDoc) => {
             return eventDoc.toObject();
@@ -74,9 +74,9 @@ router.get('/calendar/:user', function(req, res) {
 
 // Grab All Events By User and Vendor
 router.get('/calendar/:user/:vendor', function(req, res) {
-   eventModel.find({user: req.parm.user, vendor: req.parm.vendor}, (function(err, eventData) {
+   eventModel.find({user: req.params.user, vendor: req.params.vendor}, (function(err, eventData) {
       if (err || eventData === null) {
-         res.send("User " + req.parm.user + " does not have any events assciated with Vendor " + req.parm.vendor);
+         res.send("User " + req.params.user + " does not have any events assciated with Vendor " + req.params.vendor);
       } else {
          const userEvents = eventData.map((eventDoc) => {
             return eventDoc.toObject();
@@ -87,45 +87,54 @@ router.get('/calendar/:user/:vendor', function(req, res) {
    );
 });
 
-// Add, Edit, and Delete Events By User
+// Add Event By User
 router.post('/calendar/:user', function(req, res) {
-   var data = req.body;
-
-   var mode = data["!nativeeditor_status"];
-   
-   var sid = data.id;
-   var tid = sid;
-
-   delete data.id;
-   delete data["!nativeeditor_status"];
-
-   function update_response(err, result) {
-      if (err) {
-         mode = 'error';
-      } else if (mode == "inserted") {
-         tid = data._id;
+   const newEvent = new eventModel({
+      user: req.params.user,
+      vendor: req.body.vendor,
+      desc: req.body.text,
+      start_date: req.body.start_date,
+      end_date: req.body.end_date,
+      color: req.body.color
+   });
+   newEvent.save(function(err, eventData) {
+      if (err || eventData === null) {
+         res.send('A database error occured while updating event: ' +
+         req.params.event);
+      } else {
+         res.send(eventData);
       }
-      res.setHeader("Content-Type", "application/json");
-      res.send({action: mode, sid: sid, tid: tid});
-   }
+   });
+});
 
-   if (mode == "updated") {
-      eventModel.updateOne(sid, data, update_response);
-   } else if (mode == "inserted") {
-      const newEvent = new eventModel({
-         user: data.user,
-         vendor: data.vendor,
-         text: data.text,
-         start_date: data.start_date,
-         end_date: data.end_date,
-         color: data.color
-      });
-      newEvent.save(update_response);
-   } else if (mode == "deleted") {
-      eventModel.deleteOne(sid, update_response);
-   } else {
-      res.send("Unsupported Operation");
-   }
+// Update Event
+router.post('calendar/edit/:event', function(req, res) {
+   var update = {
+      desc: req.body.text,
+      start_date: req.body.start_date,
+      end_date: req.body.end_date,
+      color: req.body.color
+   };
+   eventModel.findByIdAndUpdate(req.params.event, update, function(err, eventData) {
+      if (err || eventData === null) {
+         res.send('A database error occured while updating event: ' +
+         req.params.event);
+      } else {
+         res.send(eventData);
+      }
+   });
+});
+
+// Delete an Event
+router.delete('calendar/:event', function(req, res) {
+   eventModel.findByIdAndDelete(req.params.event, function(err, eventData) {
+      if (err || eventData === null) {
+         res.send('A database error occured while removing event: ' +
+         req.params.event);
+      } else {
+         res.send(eventData);
+      }
+   });
 });
 
 module.exports = router;

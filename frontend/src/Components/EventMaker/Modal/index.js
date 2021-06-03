@@ -2,6 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Form } from '../Form';
 import FocusTrap from 'focus-trap-react';
+import axios from 'axios';
+
+// const addEvent = async (vendorId, title, start, end, color) => {
+//   try {
+//     const res = await axios.post('/calendar/' + userId, {
+//       _id : userId,
+//       user : userId,
+//       vendor : vendorId,
+//       text : title,
+//       start_date : start,
+//       end_date : end,
+//       color : color
+//     });
+//     console.log(res);
+//   } catch (err) {
+//       console.log(err + ' | Failed to add new event');
+//   }
+// };
+
+
 export const Modal = ({
   onClickOutside,
   onKeyDown,
@@ -37,7 +57,8 @@ export const Modal = ({
             </svg>
           </button>
           <div className="modal-body">
-            <Form onSubmit={onSubmit} />
+            <Form onSubmit={
+              onSubmit} />
           </div>
         </div>
       </aside>
@@ -47,3 +68,5 @@ export const Modal = ({
 };
 
 export default Modal;
+
+

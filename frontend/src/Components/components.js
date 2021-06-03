@@ -11,3 +11,5 @@ export {default as TopBar} from './TopBar/TopBar';
 export {default as CustomForm} from './CustomForm/CustomForm';
 export {default as FileList} from './FileList/FileList';
 export {default as FileViewer} from './FileViewer/FileViewer';
+export {default as UserDataPopup} from './UserDataPopup/UserDataPopup';
+export {default as AppDataRow} from './UserDataPopup/AppDataRow';

@@ -1,0 +1,32 @@
+.DataPopup {
+    z-index: 1000;
+    background-color: #73A8C0;
+    position: absolute;
+    width: 40em;
+    border-radius: 20px;
+    padding-bottom: 3em;
+}
+
+.Headings {
+    margin-left: 45%;
+}
+
+.HeadingTextLeft {
+    text-align: center;
+    padding-left: 2em;
+    padding-right: 0;
+}
+
+.HeadingTextRight {
+    text-align: center;
+    padding-right: 3em;
+    padding-left: 0;
+}
+
+.CloseButton {
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 30px;
+    padding: none;
+}

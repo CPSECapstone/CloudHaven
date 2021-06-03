@@ -26,7 +26,8 @@ const EventSchema = new Schema({
       required: true
    },
    color: {
-      type: Number
+      type: String,
+      default: "#FFFF00"
    }
 });
 

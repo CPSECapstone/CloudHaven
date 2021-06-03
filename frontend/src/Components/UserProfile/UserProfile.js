@@ -1,12 +1,13 @@
 import { React, useEffect, useState } from 'react';
 import { Container, Row, Col, Button, Nav } from 'react-bootstrap';
-import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card'
-import Form from 'react-bootstrap/Form'
-import profile from '../../Images/profileUser.png';
-import settings from '../../Images/settings.png'
-import spacer from '../../Images/userProfileSpacer.png';
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
 import caretDown from '../../Images/caretDown.png';
+import Form from 'react-bootstrap/Form';
+import profile from '../../Images/profileUser.png';
+import settings from '../../Images/settings.png';
+import spacer from '../../Images/userProfileSpacer.png';
+import { UserDataPopup } from '../components';
 import './UserProfile.css'
 import axios from 'axios';
 
@@ -14,6 +15,7 @@ const UserProfile = (props) => {
 
     const [ isEditing, setIsEditing ] = useState(false);
     const [ buttonText, setButtonText ] = useState('Edit');
+    const [ userDataPopup, setUserDataPopup ] = useState(false);
 
     // TO DO: pull user info from passport/backend
     const [ userData, setUserData ] = useState({
@@ -121,22 +123,20 @@ const UserProfile = (props) => {
 
     const ManageDataButton = () => {
         return (
-            <Nav
-                className='justify-content-center'
-                activeKey='/home'
-                onSelect={(selectedKey) => alert(`${selectedKey} goes here`)}
-            >
+            <Button className='ManageData' onClick={() => setUserDataPopup(true)}>
                 <img className='SettingsIcon' src={settings} height='30' />
-                <Nav.Link className='ManageDataText' eventKey='ManageDataPopup'> <u>Manage Data</u></Nav.Link>
-            </Nav>
+                <a className='ManageDataText'> <u>Manage Data</u> </a>
+            </Button>
         )
     }
 
-
     return (
         <Container className='UserProfileWrapper'>
+            <div className='Popup'>
+                <UserDataPopup display={userDataPopup} onClose={() => setUserDataPopup(false)}/>
+            </div>
             <ProfileHeader/>
-                <header className='AccordionHeader'>Personal Information</header>
+            <header className='AccordionHeader'>Personal Information</header>
             <Accordion className='InfoAccordion'>
                 <Card className='AccordionCard'>
                     <Accordion.Toggle as={Card.Body} eventKey='0' >
@@ -227,7 +227,9 @@ const UserProfile = (props) => {
                 </Card>
             </Accordion>
 
-            <ManageDataButton/>
+            <div className='ManageDataDiv'>
+                <ManageDataButton/>
+            </div>
 
         </Container>
 
