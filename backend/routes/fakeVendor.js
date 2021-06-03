@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var jsonParser = require('../models/JsonParser');
+var axios = require('axios');
 
 const VENDOR_ID = "fakeVendor";
 
@@ -78,6 +80,11 @@ router.get('/fakeVendor/form', async function(req, res) {
     }
 
     res.json(FORM);
+});
+
+router.get('/fakeVendor/js', async function(req, res) {
+    let form = await axios.get('http://localhost:4000/fakeVendor/form');
+    form = jsonParser(form.data);
 });
 
 module.exports = router;

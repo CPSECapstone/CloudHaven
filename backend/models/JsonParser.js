@@ -68,12 +68,11 @@ function parseComponent(componentObj) {
     }
 }
 
-export default function jsonParser(inObj) {
-    let outObj = new JsonObj(inObj.VendorId, inObj.VendorAuth, []);
+module.exports = function jsonParser(inObj) {
+    let res = {};
 
-    for (let c of inObj.Components) {
-        outObj.addComponent(parseComponent(c));
+    for (component of inObj.Components){
+        console.log(component);
     }
-
-    return outObj.toJson();
+    return res;
 }
