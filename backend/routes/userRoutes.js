@@ -26,6 +26,7 @@ router.post('/users/register', async (req, res) => {
             password: req.body.password,
             first_name: req.body.first_name,
             last_name: req.body.last_name,
+            birth_date: req.body.birth_date,
             phone_number: req.body.phone_number,
             ssn: req.body.ssn,
             subscribed: [],

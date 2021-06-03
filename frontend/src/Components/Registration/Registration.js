@@ -14,6 +14,7 @@ const Registration = () => {
   const [ssn, setSsn] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [birthday, setBirthday] = useState('');
 
   /** Handles registration attempt */
   const handleSubmit = async () => {
@@ -31,6 +32,7 @@ const Registration = () => {
           first_name: firstName,
           last_name: lastName,
           phone_number: phoneNumber,
+          birth_date: birthday,
           ssn
        })
        .then((res) => {
@@ -116,6 +118,18 @@ const Registration = () => {
         name="phone_number"
         label="Phone Number"
         onChange={(e) => setPhoneNumber(e.target.value)}
+      />
+      <TextField
+        id="birthday"
+        variant="outlined"
+        margin="normal"
+        type="date"
+        required
+        fullWidth
+        name="birthday"
+        label="Date of Birth"
+        defaultValue={new Date().toJSON().slice(0,10)}
+        onChange={(e) => setBirthday(e.target.value)}
       />
       <TextField
         id="ssn"
