@@ -1,31 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ChatBox from "react-chat-plugin";
 import { Background } from "./Chat.styled";
 import axios from "axios";
 
 const Chat = () => {
-  let user = "user1";
-  const vendor = "vendor";
+  // const vendor = "vendor";
 
-  const getUserVendorChats = async () => {
-    const response = await axios('/users/all');
-    user = response.data._id;
-    console.log(user);
-    const chat = await axios.get(`/chats/${user}`);
-    console.log(chat.data);
+  const [user1, setUser1] = useState(null);
+  const [messagesData, setMessagesData] = useState([]);
+  let data;
+
+  const getUserVendorChatsData = async () => {
+    try {
+      const response = await axios("/users/all");
+      setUser1(response.data);
+      const chat = await axios.get(`/chats/${response.data._id}`);
+      return chat.data;
+    } catch (error) {
+      console.log("Ya dun goofed. Relog");
+    }
   };
 
-  const [data, setData] = useState(getUserVendorChats());
+  useEffect(async () => {
+    data = await getUserVendorChatsData();
+
+    if (data && user1) {
+      setMessages(data);
+    }
+  }, [user1 == null]);
 
   const handleOnSendMessage = (message) => {
-    if (data.messages) {
-      setData({
-        ...data,
-        messages: data.messages.concat({
+    if (messagesData) {
+      setMessagesData({
+        ...messagesData,
+        messages: messagesData.concat({
           author: {
-            username: user,
-            id: 1, //TODO get user id
-            avatarUrl: "https://image.flaticon.com/icons/svg/2446/2446032.svg", //TODO get userimage
+            username: user1.first_name,
+            id: user1._id,
+            avatarUrl: null,
           },
           text: message,
           type: "text",
@@ -33,26 +45,38 @@ const Chat = () => {
         }),
       });
     }
+
+    axios.post(`/chats/${user1._id}`, messagesData);
   };
 
-  var user2;
-  if (data.participants) {
-    data.participants.forEach((participant) => {
-      if (participant != user) {
-        user2 = participant;
-      }
+  const setMessages = (d) => {
+    let newFormattedMessages = [];
+    d.forEach((data) => {
+      newFormattedMessages.push({
+        text: data.messages[0].text,
+        type: "text",
+        timestamp: data.messages[0].timeStamp,
+        author: { userName: user1.first_name, id: user1._id, url: null },
+      });
     });
-  }
+    setMessagesData(newFormattedMessages);
+  };
+
+  if (user1 == null) return null;
 
   return (
     <Background>
       <ChatBox
         onSendMessage={handleOnSendMessage}
-        userId={1}
-        messages={data.messages}
+        userId={user1._id}
+        messages={messagesData}
         placeholder={"Type here to chat..."}
-        showTypingIndicator={true}
-        activeAuthor={{ username: user2, id: 2, avatarUrl: null }} //TODO get user2's info
+        showTypingIndicator={false}
+        activeAuthor={{
+          username: user1.first_name,
+          id: user1._id,
+          avatarUrl: null,
+        }}
       />
     </Background>
   );
