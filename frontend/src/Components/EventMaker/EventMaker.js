@@ -9,14 +9,14 @@ const EventMaker = () => {
 
   
   const onSubmit = (event) => {
-    console.log("I'm in the trigger");
-    let name = event.target.name.value;
-    let start = event.target.start.value;
-    let end = event.target.end.value;
-    
-    
-    addEvent(null, name, start, end, "#5442f5");
     event.preventDefault(event);
+    let name = event.target.name.value;
+    let start = new Date(event.target.start.value);
+    let end = new Date(event.target.end.value);
+    
+    
+    addEvent(null, name, start, end, 0x5442f5);
+
     // console.log(event);
     // console.log(event.target);
     console.log(event.target.name.value);

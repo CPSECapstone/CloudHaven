@@ -11,7 +11,7 @@ export const Form = ({ onSubmit }) => {
         <input className="form-control" id="name" />
       </div>
       <div className="form-group">
-        <label htmlFor="start">Starting time (MM/DD/YYYY HH:MM) </label>
+        <label htmlFor="start">Starting time (YYYY-DD-MM HH:MM) </label>
         <input className="form-control" id="start" />
         {/* <DateSelector id="StartTime"></DateSelector> */}
         {/* <DatePicker></DatePicker> */}
