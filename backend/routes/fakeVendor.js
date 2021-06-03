@@ -61,30 +61,32 @@ const FORM = {
                 {
                     Child: "dropdown",
                     Title: "States",
-                    Content: "Select a country"
+                    Content: ["Select a country"]
                 },
             ]
         }
     ]
 }
 
-router.get('/fakeVendor/form', async function(req, res) {
+router.get('/fakeVendor/form', function(req, res) {
     const BODY = req.body;
+
+    let form = JSON.parse(JSON.stringify(FORM));
 
     if (Object.keys(BODY).length != 0 && BODY.country && 
         LOCATIONS[BODY.country]){
 
-        let form = Object.assign({}, FORM);
         form.Components[0].Fields[LOCATION_COMPONENTS.state].Content = 
             LOCATIONS[BODY.country];
     }
 
-    res.json(FORM);
+    console.log(req.body);
+    res.json(form);
 });
 
 router.get('/fakeVendor/js', async function(req, res) {
     let form = await axios.get('http://localhost:4000/fakeVendor/form');
-    form = jsonParser(form.data);
+    res.json(form.data);
 });
 
 module.exports = router;
