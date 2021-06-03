@@ -2,7 +2,7 @@
    width: 233px;
    background-color: var(--light-gray-accent-color);
    padding: 12px 0px;
-   height: calc(100vh - 104px);
+   height: 100vh;
    overflow: auto;
 }
 
