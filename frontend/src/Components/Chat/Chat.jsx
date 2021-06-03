@@ -27,26 +27,36 @@ const Chat = () => {
     if (data && user1) {
       setMessages(data);
     }
-  }, [user1 == null]);
+  }, [user1 == null, messagesData]);
 
   const handleOnSendMessage = (message) => {
-    if (messagesData) {
-      setMessagesData({
-        ...messagesData,
-        messages: messagesData.concat({
-          author: {
-            username: user1.first_name,
-            id: user1._id,
-            avatarUrl: null,
-          },
-          text: message,
-          type: "text",
-          timestamp: +new Date(),
-        }),
-      });
-    }
+    let tempData = messagesData;
+    const newMessage = {
+      author: {
+        username: user1.first_name,
+        id: user1._id,
+        avatarUrl: null,
+      },
+      text: message,
+      type: "text",
+      timestamp: +new Date(),
+    };
+    tempData.push(newMessage);
+    setMessagesData(tempData);
 
-    axios.post(`/chats/${user1._id}`, messagesData);
+    const saveMessage = {
+      participants: [newMessage.author.id, "test participant"],
+      vendor: "test",
+      messages: [
+        {
+          sendor: newMessage.author.id,
+          timeStamp: newMessage.timestamp,
+          text: message,
+        },
+      ],
+    };
+
+    axios.post(`/chats/${user1._id}`, saveMessage);
   };
 
   const setMessages = (d) => {
