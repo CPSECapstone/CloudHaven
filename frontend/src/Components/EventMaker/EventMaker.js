@@ -1,18 +1,59 @@
 import React from "react";
 import { Container } from "./Container";
 import "./index.css"
+import axios from 'axios';
+
 
 const EventMaker = () => {
   const triggerText = "Add Event";
+
+  
   const onSubmit = (event) => {
+    console.log("I'm in the trigger");
+    let name = event.target.name.value;
+    let start = event.target.start.value;
+    let end = event.target.end.value;
+    
+    
+    addEvent(null, name, start, end, "#5442f5");
+    event.preventDefault(event);
+    // console.log(event);
+    // console.log(event.target);
     console.log(event.target.name.value);
-    console.log(event.target.email.value);
+    console.log(event.target.start.value);
+    console.log(event.target.end.value);
+    console.log(event.target.vendor.value);
+    
   };
   return (
     <div className="App">
-      <Container triggerText={triggerText}/>
+      <Container triggerText={triggerText} onSubmit={onSubmit}/>
     </div>
   );
 };
 
 export default EventMaker;
+
+
+
+const addEvent = async (vendorId, title, start, end, color) => {
+  try {
+    const response = await axios('/users/all');
+    
+    let userId = response.data._id; 
+
+    const res = await axios.post('/calendar/' + userId, {
+      user : userId,
+      //vendor to be implemented later
+      vendor : null,
+      text : title,
+      start_date : start,
+      end_date : end,
+      color : color
+    });
+    console.log(res);
+  } catch (err) {
+      console.log(err + ' | Failed to add new event');
+  }
+};
+
