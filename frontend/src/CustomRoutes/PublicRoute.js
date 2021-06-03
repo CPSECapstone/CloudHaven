@@ -8,8 +8,9 @@ const PublicRoute = ({component: Component, restricted, ...rest}) => {
     <Route {...rest} render={ (props) => (
           localStorage.getItem('loggedIn') && restricted ?
             <Redirect to='/home' /> :
-              <Component {...props} />
-    )} />
+              <Component {...props} {...rest}/>
+    )}
+     />
   );
 };
 
