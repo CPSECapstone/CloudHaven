@@ -10,8 +10,10 @@ import java.net.InetSocketAddress;
 import java.util.UUID;
 
 public class VendorDriver {
+  private static final String CLOUDHAVEN_URL = "http://localhost:3000";
+
   /*
-  *  <TODO> establish a seeded vendorId and vendorAuth in a later sprint.
+  *  <TODO> establish a seeded vendorId and vendorAuth in a late  r sprint.
   *  For now, we'll use hard-coded as an example (this id/auth is not currently used anywhere in the app)
   */
   private static UUID vendorId = UUID.fromString("552b0e21-6dca-4753-8221-8c0fd29860fb");
@@ -26,7 +28,8 @@ public class VendorDriver {
   }
 
   private static void handleRequest(HttpExchange exchange) throws IOException {
-    exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+    exchange.getResponseHeaders().add("Access-Control-Allow-Origin", CLOUDHAVEN_URL);
+    exchange.getResponseHeaders().add("Access-Control-Allow-Credentials", "true");
     String[] pathComponents = exchange.getRequestURI().getPath().split("/");
     if (pathComponents.length > 2 && pathComponents[1].equals("profile")) {
       handleValidRequest(exchange, pathComponents[2], Profile.class);

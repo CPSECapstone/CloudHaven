@@ -1,0 +1,9 @@
+#FileViewer {
+    padding: 2em;
+    width: 1024px;
+    height: auto;
+}
+
+.pdfobject-container {
+    height: 100%;
+}
