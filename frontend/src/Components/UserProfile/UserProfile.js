@@ -1,18 +1,21 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { Container, Row, Col, Button, Nav } from 'react-bootstrap';
-import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card'
-import Form from 'react-bootstrap/Form'
-import profile from '../../Images/profileUser.png';
-import settings from '../../Images/settings.png'
-import spacer from '../../Images/userProfileSpacer.png';
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
 import caretDown from '../../Images/caretDown.png';
+import Form from 'react-bootstrap/Form';
+import profile from '../../Images/profileUser.png';
+import settings from '../../Images/settings.png';
+import spacer from '../../Images/userProfileSpacer.png';
+import { UserDataPopup } from '../components';
 import './UserProfile.css'
+import axios from 'axios';
 
-const UserProfile = () => {
+const UserProfile = (props) => {
 
     const [ isEditing, setIsEditing ] = useState(false);
     const [ buttonText, setButtonText ] = useState('Edit');
+    const [ userDataPopup, setUserDataPopup ] = useState(false);
 
     // TO DO: pull user info from passport/backend
     const [ userData, setUserData ] = useState({
@@ -73,6 +76,41 @@ const UserProfile = () => {
         }));
     }
 
+    const addUserService = async (serviceId) => {
+        props.setUpdateUserProfile(true)
+        try {
+            await axios.post('/users/vendors', {vendorId: serviceId});
+        } catch (error) {
+            console.log(error);
+        };
+    };
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await axios('/users/all');
+                console.log(response.data)
+                const fetchedData = {
+                    firstName: response.data.first_name,
+                    lastName: response.data.last_name,
+                    email: response.data.email,
+                    phoneNumber: response.data.phone_number,
+                    birthDate: response.data.birth_date.substring(0,10)
+                }
+                setUserData(fetchedData)
+
+            } catch (err) {
+                console.log(err + ' | Failed to get user data');
+            }
+        };
+        fetchUserData();
+        if (props.setUpdateUserProfile) {
+            props.setUpdateUserProfile(false);
+        }
+    }, [props.updateUserProfile]);
+
+
+
     const ProfileHeader = () => {
         return (
             <Container className='ProfileHeader'>
@@ -85,22 +123,20 @@ const UserProfile = () => {
 
     const ManageDataButton = () => {
         return (
-            <Nav
-                className='justify-content-center'
-                activeKey='/home'
-                onSelect={(selectedKey) => alert(`${selectedKey} goes here`)}
-            >
+            <Button className='ManageData' onClick={() => setUserDataPopup(true)}>
                 <img className='SettingsIcon' src={settings} height='30' />
-                <Nav.Link className='ManageDataText' eventKey='ManageDataPopup'> <u>Manage Data</u></Nav.Link>
-            </Nav>
+                <a className='ManageDataText'> <u>Manage Data</u> </a>
+            </Button>
         )
     }
 
-
     return (
         <Container className='UserProfileWrapper'>
+            <div className='Popup'>
+                <UserDataPopup display={userDataPopup} onClose={() => setUserDataPopup(false)}/>
+            </div>
             <ProfileHeader/>
-                <header className='AccordionHeader'>Personal Information</header>
+            <header className='AccordionHeader'>Personal Information</header>
             <Accordion className='InfoAccordion'>
                 <Card className='AccordionCard'>
                     <Accordion.Toggle as={Card.Body} eventKey='0' >
@@ -166,7 +202,7 @@ const UserProfile = () => {
                                         <Form.Control
                                             name={birthFormData.controlId}
                                             type={birthFormData.type}
-                                            value={userData.lastName}
+                                            value={userData.birthDate}
                                             onChange={handleUserDataChange}
                                             disabled={!isEditing} />
                                     </Form.Group>
@@ -191,7 +227,9 @@ const UserProfile = () => {
                 </Card>
             </Accordion>
 
-            <ManageDataButton/>
+            <div className='ManageDataDiv'>
+                <ManageDataButton/>
+            </div>
 
         </Container>
 

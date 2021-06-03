@@ -20,3 +20,5 @@ The only sample vendor application in this repository is the "Sample Vendor Quer
 ### Debugging
 If you run into an error stating `Unknown lifecycle phase "`, run the command `cat run | sed $'s/\r//' > test` to remove carriage returns. 
 Then try runing the new "test" script with `./test`, if that works replace the `run` script with the newly generated `test` script.
+
+If compiling the project does not work (particularly when the error points at the `List.of` method in `RealDataProvider.java`), make sure you are using a least Java version 9.

@@ -8,16 +8,16 @@ import org.junit.jupiter.api.TestInstance;
 public class TestForm {
   @Test
   public void testSameSeedForms() {
-    Form f1 = new Form("1");
-    Form f2 = new Form("1");
+    Form f1 = new Form("1", true);
+    Form f2 = new Form("1", true);
     assertEquals(f1, f2);
     assertEquals(f1.toSendableJson().build(), f2.toSendableJson().build());
   }
 
   @Test
   public void testDifferentSeedForms() {
-    Form f1 = new Form("2");
-    Form f2 = new Form("3");
+    Form f1 = new Form("2", true);
+    Form f2 = new Form("3", true);
     // Can't run .equals on rows due to JsonArray issues
     // assertNotEquals(f1, f2);
     assertNotEquals(f1.toSendableJson().build(), f2.toSendableJson().build());

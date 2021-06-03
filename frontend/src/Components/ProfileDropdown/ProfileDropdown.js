@@ -13,7 +13,7 @@ const ProfileDropdown = () => {
                 <span id="DropdownUsername">Username</span>
             </Dropdown.Toggle>
             <Dropdown.Menu>
-                <Dropdown.Item href="/profile">
+                <Dropdown.Item href="/home">
                     <span className="DropdownItem">
                         Profile
                         <img className="Icon" src={profile} />

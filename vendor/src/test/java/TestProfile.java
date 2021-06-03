@@ -8,16 +8,16 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 public class TestProfile {
   @Test
   public void testSameSeedProfiles() {
-    Profile p1 = new Profile("1");
-    Profile p2 = new Profile("1");
+    Profile p1 = new Profile("1", true);
+    Profile p2 = new Profile("1", true);
     assertEquals(p1, p2);
     assertEquals(p1.toSendableJson().build(), p2.toSendableJson().build());
   }
 
   @Test
   public void testDifferentSeedProfiles() {
-    Profile p1 = new Profile("2");
-    Profile p2 = new Profile("3");
+    Profile p1 = new Profile("2", true);
+    Profile p2 = new Profile("3", true);
     assertNotEquals(p1, p2);
     assertNotEquals(p1.toSendableJson().build(), p2.toSendableJson().build());
   }

@@ -1,0 +1,22 @@
+.CustomFormContainer {
+    background-color: #DEDDDD;
+    padding: 2em;
+}
+
+.FormBox {
+    background-color: var(--gray-accent-color);
+    padding: 2em;
+    border-radius: 20px;
+}
+
+.FormDescription {
+    color: #585858;
+    margin-bottom: 1.5em;
+}
+
+.SubmitButton {
+    background-color: #EDEDED;
+    color: black;
+    border: none;
+    margin-top: 1.5em;
+}
