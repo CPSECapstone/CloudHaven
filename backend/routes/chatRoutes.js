@@ -43,32 +43,36 @@ router.get("/chats/:user/:vendor", function (req, res) {
   );
 });
 
-// Add, Edit, and Delete Chats By Sendor
+// Add Chats By User
 router.post("/chats/:user", function (req, res) {
-  var data = req.body;
+  const newChat = new chatModel({
+    participants: req.body.participants,
+    vendor: req.body.vendor,
+    messages: req.body.messages,
+  });
+  newChat.save(function (err, chatData) {
+    if (err || chatData === null) {
+      res.send(
+        "A database error occured while adding chat to user: " + req.params.user
+      );
+    } else {
+      res.send(chatData);
+    }
+  });
+});
 
-  var mode = data["!nativeeditor_status"];
-
-  var sid = data.id;
-  var tid = sid;
-
-  delete data.id;
-  delete data["!nativeeditor_status"];
-
-  if (mode == "updated") {
-    chatModel.updateOne(sid, data, update_response);
-  } else if (mode == "inserted") {
-    const newChat = new chatModel({
-      participants: data.participants,
-      vendor: data.vendor,
-      messages: data.messages,
-    });
-    newChat.save(update_response);
-  } else if (mode == "deleted") {
-    chatModel.deleteOne(sid, update_response);
-  } else {
-    res.send("Unsupported Operation");
-  }
+// Add a Message to a Chat
+router.post("/chats/message/:chat", function (req, res) {
+  chatModel.findByIdAndUpdate(req.params.chat,
+    {$push: {messages: req.body.message}}, function (err, chatData) {
+    if (err || chatData === null) {
+      res.send(
+        "A database error occured while adding message to chat: " + req.params.chat
+      );
+    } else {
+      res.send(chatData);
+    }
+  });
 });
 
 module.exports = router;
