@@ -14,7 +14,7 @@ function App () {
           <PublicRoute restricted={false} exact path='/' component = {LandingPage}/>
           <PrivateRoute path='/home' component = {Home}/>
           <PublicRoute restricted={true} path='/login' component={Login}/>
-          <PublicRoute restricted={true} path='/JsDemo' component={JsDemo}/>
+          <PublicRoute path='/JsDemo' component={JsDemo}/>
           <PublicRoute restricted={true} path='/register'
             component={Registration}/>
           <PublicRoute restricted={false} path='/market' component={VendorMarketplace}/>

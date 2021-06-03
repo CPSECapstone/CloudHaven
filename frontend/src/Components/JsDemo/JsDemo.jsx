@@ -14,8 +14,6 @@ const JsDemo = () => {
     axios.get('/fakeVendor/js')
        .then((res) => {
           if (res.status === 200) {
-            //  login(email, password);
-            console.log("this doesnt work: ");
             console.log(res);
           } else {
              console.log('fetch failed');
