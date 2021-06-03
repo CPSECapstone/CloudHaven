@@ -89,7 +89,6 @@ const UserProfile = (props) => {
         const fetchUserData = async () => {
             try {
                 const response = await axios('/users/all');
-                console.log(response.data)
                 const fetchedData = {
                     firstName: response.data.first_name,
                     lastName: response.data.last_name,
