@@ -94,7 +94,7 @@ const Registration = () => {
         required
         fullWidth
         name="first_name"
-        label="First_Name"
+        label="First Name"
         onChange={(e) => setFirstName(e.target.value)}
       />
       <TextField
@@ -104,7 +104,7 @@ const Registration = () => {
         required
         fullWidth
         name="last_name"
-        label="Last_Name"
+        label="Last Name"
         onChange={(e) => setLastName(e.target.value)}
       />
       <TextField
@@ -114,7 +114,7 @@ const Registration = () => {
         required
         fullWidth
         name="phone_number"
-        label="Phone_Number"
+        label="Phone Number"
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
       <TextField
