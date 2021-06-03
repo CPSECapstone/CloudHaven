@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { Container, Row, Col, Button, Nav } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
@@ -8,8 +8,9 @@ import settings from '../../Images/settings.png'
 import spacer from '../../Images/userProfileSpacer.png';
 import caretDown from '../../Images/caretDown.png';
 import './UserProfile.css'
+import axios from 'axios';
 
-const UserProfile = () => {
+const UserProfile = (props) => {
 
     const [ isEditing, setIsEditing ] = useState(false);
     const [ buttonText, setButtonText ] = useState('Edit');
@@ -72,6 +73,41 @@ const UserProfile = () => {
             [name]: value
         }));
     }
+
+    const addUserService = async (serviceId) => {
+        props.setUpdateUserProfile(true)
+        try {
+            await axios.post('/users/vendors', {vendorId: serviceId});
+        } catch (error) {
+            console.log(error);
+        };
+    };
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await axios('/users/all');
+                console.log(response.data)
+                const fetchedData = {
+                    firstName: response.data.first_name,
+                    lastName: response.data.last_name,
+                    email: response.data.email,
+                    phoneNumber: response.data.phone_number,
+                    birthDate: response.data.birth_date.substring(0,10)
+                }
+                setUserData(fetchedData)
+
+            } catch (err) {
+                console.log(err + ' | Failed to get user data');
+            }
+        };
+        fetchUserData();
+        if (props.setUpdateUserProfile) {
+            props.setUpdateUserProfile(false);
+        }
+    }, [props.updateUserProfile]);
+
+
 
     const ProfileHeader = () => {
         return (
@@ -166,7 +202,7 @@ const UserProfile = () => {
                                         <Form.Control
                                             name={birthFormData.controlId}
                                             type={birthFormData.type}
-                                            value={userData.lastName}
+                                            value={userData.birthDate}
                                             onChange={handleUserDataChange}
                                             disabled={!isEditing} />
                                     </Form.Group>
