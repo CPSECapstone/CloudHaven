@@ -30,7 +30,9 @@ export const SubText = styled.p`
   font-size: 18px;
   color: #fff;
   font-weight: 600;
-  margin: 100px 0 64px;
+  padding-left: 130px;
+  margin-top: 64px;
+//   margin: 100px 0 64px;
 `
 
 export const ButtonRow = styled.div`
