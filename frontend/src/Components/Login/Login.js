@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
@@ -46,6 +46,17 @@ const Login = () => {
   const [loginPassword, setLoginPassword] = useState('');
   const [loginError, setLoginError] = useState('');
 
+  useEffect(() => {
+    window.addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        document.getElementById("signIn").click();
+      }
+    })
+  }, []);
+
   return (
     <Container component='div' maxWidth='xs'>
       <Container component='div' maxWidth='sm'>
@@ -77,6 +88,7 @@ const Login = () => {
           onChange={(e) => setLoginPassword(e.target.value)}
         />
         <Button
+          id="signIn"
           type="button"
           fullWidth
           variant="contained"
