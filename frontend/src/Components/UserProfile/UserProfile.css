@@ -47,13 +47,29 @@
     text-align: start;
 }
 
+.ManageDataDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ManageData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: #254E70;
+    border: none;
+}
+
 .SettingsIcon {
-    margin-top: 0.7em;
+    cursor: pointer;
+    padding-right: 10px;
 }
 
 .ManageDataText {
     font-size: 22px;
-    color: #254E70;
+    cursor: pointer;
 }
 
 .Caret {
@@ -72,4 +88,11 @@
 .collapsing {
     padding: 1em;
     padding-top: 0;
+}
+
+.Popup {
+    position: relative;
+    left: 50%;
+    top: 3em;
+    margin-left: -25em;
 }
