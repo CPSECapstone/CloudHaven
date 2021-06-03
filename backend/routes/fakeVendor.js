@@ -69,18 +69,16 @@ const FORM = {
 }
 
 router.get('/fakeVendor/form', function(req, res) {
-    const BODY = req.body;
+    const QUERY = req.query;
 
     let form = JSON.parse(JSON.stringify(FORM));
 
-    if (Object.keys(BODY).length != 0 && BODY.country && 
-        LOCATIONS[BODY.country]){
+    if (Object.keys(QUERY).length != 0 && QUERY.country && 
+        LOCATIONS[QUERY.country]){
 
         form.Components[0].Fields[LOCATION_COMPONENTS.state].Content = 
-            LOCATIONS[BODY.country];
+            LOCATIONS[QUERY.country];
     }
-
-    console.log(req.body);
     res.json(form);
 });
 

@@ -29,13 +29,16 @@ const JsDemo = () => {
      let axiosCb = async (event) => {
          let cb = form.Callback;
          let data = {};
+         console.log("event.target.value: ", event.target.value)
          for (let d of cb.body) {
             data[d] = event.target.value;
          }
          let res = await axios({
             url: cb.url,
             method: cb.method,
-            data: {country: 'USA'}
+            params: {
+               country: event.target.value
+            }
          })
          console.log('im being calledback')
          console.log(cb.url);
