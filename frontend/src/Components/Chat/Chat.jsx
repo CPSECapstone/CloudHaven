@@ -52,11 +52,17 @@ const Chat = () => {
   const setMessages = (d) => {
     let newFormattedMessages = [];
     d.forEach((data) => {
+      const { text, timeStamp, sendor } = data.messages[0];
+
       newFormattedMessages.push({
-        text: data.messages[0].text,
+        text: text,
         type: "text",
-        timestamp: data.messages[0].timeStamp,
-        author: { userName: user1.first_name, id: user1._id, url: null },
+        timestamp: timeStamp,
+        author: {
+          userName: sendor == user1._id ? user1.first_name : "test",
+          id: sendor == user1._id ? user1._id : 0,
+          url: null,
+        },
       });
     });
     setMessagesData(newFormattedMessages);
