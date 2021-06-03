@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Calendar from 'react-awesome-calendar';
 import { Frame } from "./Calendar.styled";
+import EventMaker from "../EventMaker/EventMaker.js"
 import axios from 'axios';
 
 function MyCalendar() {
@@ -49,6 +50,7 @@ function MyCalendar() {
 
   return (
     <Frame>
+      <EventMaker></EventMaker>
       <Calendar
         events = {events}
       />
