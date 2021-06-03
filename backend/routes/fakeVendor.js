@@ -83,7 +83,15 @@ router.get('/fakeVendor/form', function(req, res) {
 });
 
 router.get('/fakeVendor/js', async function(req, res) {
-    let form = await axios.get('http://localhost:4000/fakeVendor/form');
+    let params = {};
+    if (req.query.country)
+        params.country = req.query.country;
+
+    let form = await axios({
+        url:'http://localhost:4000/fakeVendor/form',
+        method: 'get',
+        params: params
+    });
     res.json(form.data);
 });
 

@@ -1,14 +1,24 @@
 import React, {useState} from 'react';
 import {Link, withRouter} from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 import {TextField, Button, Container} from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import axios from 'axios';
-import {login} from '../Login/Login';
+
+const useStyles = makeStyles((theme) => ({
+   root: {
+     '& .MuiTextField-root': {
+       margin: theme.spacing(1),
+       width: '25ch',
+     },
+   },
+ }));
 
 const JsDemo = () => {
+  const classes = useStyles();
   const [comps, setComps] = useState([]);
   /**
    * Renders the registration form
@@ -48,15 +58,19 @@ const JsDemo = () => {
          setComps(parseJs(res.data.Components));
      }
 
-     let select = React.createElement(Select, { onChange: form.Callback ? axiosCb : ()=>{}}, [selectChild]);
+     let select = React.createElement(TextField, { label: form.Title, 
+      select: true, onChange: form.Callback ? axiosCb : ()=>{}, 
+      width:'500'}, 
+      [selectChild]);
 
-     children.push(React.createElement(InputLabel, {key: form.Title}, [form.Title]));
      children.push(select);
      for (let option of form.Content) {
-        selectChild.push(React.createElement(MenuItem, {key: option, value: option}, [option]));
+        selectChild.push(React.createElement(MenuItem, 
+         {key: option, value: option}, [option]));
      }
 
-     return React.createElement(FormControl, [], children);
+     return React.createElement(FormControl, 
+      {className: classes.root}, children);
   }
 
   const parseJs = (components) => {
@@ -70,9 +84,9 @@ const JsDemo = () => {
          for (let field of comp.Fields) {
             childs.push(createForm(field))
          }
-         children.push(React.createElement(Container, [], childs));
+         children.push(React.createElement(Container, {}, childs));
       }
-      let outObj = React.createElement(Container, props, children);
+      let outObj = React.createElement(Container, {width:'500'}, children);
       return outObj;
   }
 
@@ -84,7 +98,6 @@ const JsDemo = () => {
          console.log('fetch failed');
      }
      setComps(parseJs(retObj.data.Components));
-      // setComps(React.createElement(Container, [], [React.createElement(Button, [], ['hello'])]));
   }
 
   return (
