@@ -15,10 +15,10 @@ const LandingPage = () => {
       <SubText>It's CLOUDHAVEN!</SubText>
       <ButtonRow>
         <Button filled={false} to='/register'>
-          How it Works
+          Register
         </Button>
         <Button filled to='/login'>
-          Get Started
+          Login
         </Button>
       </ButtonRow>
     </Background>
