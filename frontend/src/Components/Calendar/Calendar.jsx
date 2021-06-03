@@ -8,13 +8,7 @@ import axios from 'axios';
 function MyCalendar() {
 
   const [allEvents, setEvents] = useState([]);
-
-  useEffect(() => {
-    //fetchEvents();
-    fetchUser();
-  }, [])
-
-  const [allEvents, setEvents] = useState([]);
+  const [userId, setUser] = useState("");
   let events = [];
 
   useEffect(async () => {
