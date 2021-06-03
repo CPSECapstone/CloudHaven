@@ -15,7 +15,7 @@ const JsDemo = () => {
        .then((res) => {
           if (res.status === 200) {
             //  login(email, password);
-            console.log("garret o's stinky thing: ");
+            console.log("this doesnt work: ");
             console.log(res);
           } else {
              console.log('fetch failed');
