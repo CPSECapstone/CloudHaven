@@ -46,9 +46,9 @@ router.get("/chats/:user/:vendor", function (req, res) {
 // Add Chats By User
 router.post("/chats/:user", function (req, res) {
   const newChat = new chatModel({
-    participants: data.participants,
-    vendor: data.vendor,
-    messages: data.messages,
+    participants: req.body.participants,
+    vendor: req.body.vendor,
+    messages: req.body.messages,
   });
   newChat.save(function (err, chatData) {
     if (err || chatData === null) {
