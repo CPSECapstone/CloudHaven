@@ -25,7 +25,7 @@ const renderSidebarMenuOption = (listID, iconPath, urlPath, selected) => {
         classNameIcon = "IconColor AppIcon";
         className = "Rectangle AppName";
     }
-    
+
     return(
         <li key={listID} id={listID}>
             <a href={urlPath} >
@@ -50,18 +50,18 @@ const SideBar = (props) => {
                     {iconPath: homeIcon, urlPath: "/", listID: "Home"},
                     {iconPath: plusIcon, urlPath: "/market", listID: "VendorMarket"}
                 ];
-    
+
                 for (const item of response.data) {
                     const config = {iconPath: questionMarkIcon, urlPath: item.home_route, listID: item.name}
                     newMenu.splice(1, 0, config)
                 }
-         
+
                 setMenuListItemsConfig(newMenu);
             } catch (err) {
                 console.log(err + ' | Failed to get user subscribed vendors');
             }
         };
-     
+
         fetchUserVendors();
         if (props.setUpdateSideBar) {
             props.setUpdateSideBar(false);

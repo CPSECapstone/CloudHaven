@@ -46,28 +46,10 @@ router.post('/users/register', async (req, res) => {
 });
 
 // Route for getting json containing all relevant user data
-router.get('/users/:_id/all', function(req, res) {
-   usersModel.findOne({_id: req.params._id}, function(err, userData) {
-      if (err || userData === null) {
-         res.send('No user found with _id: ' + req.params._id);
-      } else {
-         const relevantData = {
-            email: userData.email,
-         };
-         res.send(relevantData);
-      }
-   });
-});
-
-// Route for getting user email
-router.get('/users/:_id/email', function(req, res) {
-   usersModel.findOne({_id: req.params._id}, function(err, userData) {
-      if (err || userData === null) {
-         res.send('No user found with _id: ' + req.params._id);
-      } else {
-         res.send(userData.email);
-      }
-   });
+router.get('/users/all',
+   passport.authenticate('jwt', {session: false}), 
+   function(req, res) {
+      res.send(req.user);
 });
 
 // Route for getting user subscribed vendors

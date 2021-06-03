@@ -1,2 +1,11 @@
 package-lock.json
 node_modules
+/vendor/target/
+/vendor/target/classes/
+/vendor/target/generated-sources/
+/vendor/target/generated-test-sources/
+/vendor/target/maven-archiver/
+/vendor/target/maven-status/
+/vendor/target/surefire-reports/
+/vendor/target/test-classes/
+/vendor/target/javaVendor-1.0-SNAPSHOT.jar
