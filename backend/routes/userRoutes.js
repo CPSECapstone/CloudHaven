@@ -51,6 +51,12 @@ router.get('/users/all',
       res.send(req.user);
 });
 
+router.get('/users/email',
+   passport.authenticate('jwt', {session: false}), 
+   function(req, res) {
+      res.send(req.user.email);
+});
+
 // Route for getting user subscribed vendors
 router.get('/users/vendors',
    passport.authenticate('jwt', {session: false}),
