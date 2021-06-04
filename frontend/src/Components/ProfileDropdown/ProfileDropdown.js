@@ -28,7 +28,7 @@ const ProfileDropdown = (props) => {
     }, [props.updateProfileDropdown]);
 
     return (
-        <Dropdown menuAlign="right">
+        <Dropdown menuAlign="right" className="Button">
             <Dropdown.Toggle variant="light">
                 <span id="DropdownUsername">{userName}</span>
             </Dropdown.Toggle>

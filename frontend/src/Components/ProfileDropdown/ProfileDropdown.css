@@ -1,6 +1,11 @@
+.Button {
+   min-width: 200px;
+}
+
 #DropdownUsername {
    font-size: var(--medium-font-size);
    padding: 0px 70px 0px 0px;
+   float: left;
 }
 
 .DropdownItem {
@@ -34,6 +39,7 @@
    padding: 0px 18px;
    border-radius: 10px;
    margin-bottom: calc(var(--top-bar-height)* 0.58);
+   min-width: 200px;
 }
 
 .dropdown-toggle::after {
@@ -43,6 +49,8 @@
    width: 30px;
    height: 30px;
    vertical-align: text-bottom;
+   float: right;
+   margin-top: 4px;
 }
 
 .dropdown-divider {
