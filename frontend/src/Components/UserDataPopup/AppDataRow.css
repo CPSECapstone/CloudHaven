@@ -1,7 +1,7 @@
 .AppDataRow {
     align-items: center;
     background-color: #73A8C0;
-    margin: 1em;
+    margin: 2em;
 }
 
 .VendorIcon {
@@ -13,6 +13,7 @@
 .VendorName {
     font-size: 18px;
     text-align: center;
+    width: 8em;
 }
 
 .checkbox {
