@@ -41,8 +41,12 @@ const Registration = () => {
           }
        })
        .catch((err) => {
-        console.log('error in logging in', err);
-        setEmailError('Email is already registered');
+        console.log('Error in logging in ', err);
+        if (err.response) {
+          setEmailError('Email is already registered');
+        } else {
+          setEmailError('Unable to reach registration server, try again later.')
+        }
       });
   }
 

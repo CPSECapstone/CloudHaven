@@ -16,6 +16,7 @@ const UserProfile = (props) => {
     const [ isEditing, setIsEditing ] = useState(false);
     const [ buttonText, setButtonText ] = useState('Edit');
     const [ userDataPopup, setUserDataPopup ] = useState(false);
+    const [ updateProfile, setUpdateProfile ] = useState(false);
 
     // TO DO: pull user info from passport/backend
     const [ userData, setUserData ] = useState({
@@ -65,6 +66,7 @@ const UserProfile = (props) => {
         }
         else {
             setButtonText('Edit')
+            setUpdateProfile(true);
         }
     };
 
@@ -77,7 +79,7 @@ const UserProfile = (props) => {
     }
 
     const addUserService = async (serviceId) => {
-        props.setUpdateUserProfile(true)
+        setUpdateProfile(true);
         try {
             await axios.post('/users/vendors', {vendorId: serviceId});
         } catch (error) {
@@ -103,10 +105,8 @@ const UserProfile = (props) => {
             }
         };
         fetchUserData();
-        if (props.setUpdateUserProfile) {
-            props.setUpdateUserProfile(false);
-        }
-    }, [props.updateUserProfile]);
+        setUpdateProfile(false);
+    }, [updateProfile]);
 
 
 
