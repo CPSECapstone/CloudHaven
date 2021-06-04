@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {TextField, Button, Container} from '@material-ui/core';
+import {Alert} from '@material-ui/lab';
 import axios from 'axios';
 import {makeLoginPost as login} from '../Login/Login';
 
@@ -15,6 +16,7 @@ const Registration = () => {
   const [passwordError, setPasswordError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [birthday, setBirthday] = useState('');
+  const [missingFields, setMissingFields] = useState([]);
 
   /** Handles registration attempt */
   const handleSubmit = async () => {
@@ -53,6 +55,20 @@ const Registration = () => {
   */
   const validateEntries = () => {
     let validated = true;
+    setMissingFields([]);
+
+    const fields = [email, firstName, lastName, phoneNumber, birthday, ssn, password, confirmPassword, ];
+    const fieldNames = ['email', 'first name', 'last name', 'phone number', 'birthday', 'ssn', 'password', 'confirm password'];
+    var i;
+    const fieldArr = [];
+    for (i = 0; i < fields.length; i++) {
+      if (fields[i] === '') {
+        fieldArr.push(fieldNames[i])
+      }
+    }
+
+    setMissingFields(fieldArr);
+
     if (password !== confirmPassword) {
       setPasswordError('Passwords do not match');
       validated = false;
@@ -77,6 +93,8 @@ const Registration = () => {
       <Container maxWidth='sm'>
         <h2>CloudHaven Registration</h2>
       </Container>
+      { missingFields.length !== 0 &&
+        <Alert severity="error">Missing required fields: {missingFields.join(', ')}</Alert>}
       <TextField
         id="email"
         variant="outlined"

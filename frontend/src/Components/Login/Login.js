@@ -15,7 +15,6 @@ const login = async (email, password, stateSetter) => {
 
 export const makeLoginPost = async (email, password) => {
   if (!email || !password) {
-    alert('email and password required!');
     return 401;
   }
   const res = await axios.post('/login', {
