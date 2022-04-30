@@ -34,14 +34,40 @@ export default (props) => {
 
     }, [props.updateSideBar]);
 
-    const renderDataPopup = () => {     
+    const renderChart = () => {
         return menuListItemsConfig.map((app) => {
             return (
                 <Row>
                     <AppDataRow name={app.listID} icon={app.iconPath}/>
                 </Row>
             )
-        })
+        });
+    }
+
+    // Add any notices to the user about this data management popup here
+    const renderNotices = () => {
+        const showNoAppsNotice = menuListItemsConfig.length === 0;
+        return (
+            <>
+                { showNoAppsNotice &&
+                    <p className='Notices'>
+                        You don't have any apps at the moment. Once you have added an app,
+                        you can change you're data settings here.
+                    </p>
+                }
+            </>
+        );
+    }
+
+    const renderDataPopup = () => {
+        const chart = renderChart();
+        const notices = renderNotices();
+        return (
+            <>
+                {chart}
+                {notices}
+            </>
+        );
     }
 
     if (!props.display) {
