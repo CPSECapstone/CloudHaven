@@ -34,14 +34,19 @@ export default (props) => {
 
     }, [props.updateSideBar]);
 
-    const renderDataPopup = () => {     
+    const renderChart = () => {
         return menuListItemsConfig.map((app) => {
             return (
                 <Row>
                     <AppDataRow name={app.listID} icon={app.iconPath}/>
                 </Row>
             )
-        })
+        });
+    }
+
+    const renderDataPopup = () => {
+        const chart = renderChart();
+        return chart;
     }
 
     if (!props.display) {
